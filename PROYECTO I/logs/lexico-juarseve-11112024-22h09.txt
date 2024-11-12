@@ -1,0 +1,113 @@
+Lex-analyzer started at: 2024-11-11 22:09:31.339814
+
+Token: VARIABLE, Value: void, Line: 2
+Token: VARIABLE, Value: main, Line: 2
+Token: LPAREN, Value: (, Line: 2
+Token: RPAREN, Value: ), Line: 2
+Token: LBRACE, Value: {, Line: 2
+Token: VARIABLE, Value: int, Line: 4
+Token: VARIABLE, Value: a, Line: 4
+ERROR: Illegal character '='
+Token: FLOAT, Value: 5, Line: 4
+Token: SEMICOLON, Value: ;, Line: 4
+Token: VARIABLE, Value: int, Line: 5
+Token: VARIABLE, Value: b, Line: 5
+ERROR: Illegal character '='
+Token: FLOAT, Value: 10, Line: 5
+Token: SEMICOLON, Value: ;, Line: 5
+Token: VARIABLE, Value: int, Line: 8
+Token: VARIABLE, Value: sum, Line: 8
+ERROR: Illegal character '='
+Token: VARIABLE, Value: addNumbers, Line: 8
+Token: LPAREN, Value: (, Line: 8
+Token: VARIABLE, Value: a, Line: 8
+Token: COMMA, Value: ,, Line: 8
+Token: VARIABLE, Value: b, Line: 8
+Token: RPAREN, Value: ), Line: 8
+Token: SEMICOLON, Value: ;, Line: 8
+Token: PRINT, Value: print, Line: 11
+Token: LPAREN, Value: (, Line: 11
+ERROR: Illegal character '"'
+Token: VARIABLE, Value: Sum, Line: 11
+Token: VARIABLE, Value: of, Line: 11
+ERROR: Illegal character '$'
+Token: VARIABLE, Value: a, Line: 11
+Token: VARIABLE, Value: and, Line: 11
+ERROR: Illegal character '$'
+Token: VARIABLE, Value: b, Line: 11
+Token: VARIABLE, Value: is, Line: 11
+Token: COLON, Value: :, Line: 11
+ERROR: Illegal character '$'
+Token: VARIABLE, Value: sum, Line: 11
+ERROR: Illegal character '"'
+Token: RPAREN, Value: ), Line: 11
+Token: SEMICOLON, Value: ;, Line: 11
+Token: VARIABLE, Value: List, Line: 17
+ERROR: Illegal character '<'
+Token: VARIABLE, Value: int, Line: 17
+ERROR: Illegal character '>'
+Token: VARIABLE, Value: numbers, Line: 17
+ERROR: Illegal character '='
+Token: LSQUARE, Value: [, Line: 17
+Token: FLOAT, Value: 1, Line: 17
+Token: COMMA, Value: ,, Line: 17
+Token: FLOAT, Value: 2, Line: 17
+Token: COMMA, Value: ,, Line: 17
+Token: FLOAT, Value: 3, Line: 17
+Token: COMMA, Value: ,, Line: 17
+Token: FLOAT, Value: 4, Line: 17
+Token: COMMA, Value: ,, Line: 17
+Token: FLOAT, Value: 5, Line: 17
+Token: RSQUARE, Value: ], Line: 17
+Token: SEMICOLON, Value: ;, Line: 17
+Token: FOR, Value: for, Line: 20
+Token: LPAREN, Value: (, Line: 20
+Token: VARIABLE, Value: int, Line: 20
+Token: VARIABLE, Value: num, Line: 20
+Token: VARIABLE, Value: in, Line: 20
+Token: VARIABLE, Value: numbers, Line: 20
+Token: RPAREN, Value: ), Line: 20
+Token: LBRACE, Value: {, Line: 20
+Token: PRINT, Value: print, Line: 21
+Token: LPAREN, Value: (, Line: 21
+Token: VARIABLE, Value: num, Line: 21
+Token: RPAREN, Value: ), Line: 21
+Token: SEMICOLON, Value: ;, Line: 21
+Token: RBRACE, Value: }, Line: 22
+Token: VARIABLE, Value: int, Line: 27
+Token: VARIABLE, Value: addNumbers, Line: 27
+Token: LPAREN, Value: (, Line: 27
+Token: VARIABLE, Value: int, Line: 27
+Token: VARIABLE, Value: x, Line: 27
+Token: COMMA, Value: ,, Line: 27
+Token: VARIABLE, Value: int, Line: 27
+Token: VARIABLE, Value: y, Line: 27
+Token: RPAREN, Value: ), Line: 27
+Token: LBRACE, Value: {, Line: 27
+Token: VARIABLE, Value: return, Line: 28
+Token: VARIABLE, Value: x, Line: 28
+Token: PLUS, Value: +, Line: 28
+Token: VARIABLE, Value: y, Line: 28
+Token: SEMICOLON, Value: ;, Line: 28
+Token: RBRACE, Value: }, Line: 29
+Token: VARIABLE, Value: int, Line: 33
+Token: VARIABLE, Value: multiplyNumbers, Line: 33
+Token: LPAREN, Value: (, Line: 33
+Token: VARIABLE, Value: int, Line: 33
+Token: VARIABLE, Value: x, Line: 33
+Token: COMMA, Value: ,, Line: 33
+Token: VARIABLE, Value: int, Line: 33
+Token: VARIABLE, Value: y, Line: 33
+Token: RPAREN, Value: ), Line: 33
+Token: LBRACE, Value: {, Line: 33
+Token: VARIABLE, Value: return, Line: 34
+Token: VARIABLE, Value: x, Line: 34
+Token: TIMES, Value: *, Line: 34
+Token: VARIABLE, Value: y, Line: 34
+Token: SEMICOLON, Value: ;, Line: 34
+Token: RBRACE, Value: }, Line: 35
+Token: TIMES, Value: *, Line: 39
+Token: DIVIDE, Value: /, Line: 39
+Token: RBRACE, Value: }, Line: 42
+
+Lex-analyzer finished at: 2024-11-11 22:09:31.408718
