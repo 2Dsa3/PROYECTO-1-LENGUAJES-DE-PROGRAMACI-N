@@ -5,6 +5,28 @@ reserved = {
     'else': 'ELSE',
     'while': 'WHILE',
     'return': 'RETURN',
+    'case':"CASE",
+    'for':"FOR",
+    'do':"DO",
+    'break':"BREAK",
+    'continue':"CONTINUE",
+    'public':"PUBLIC",
+    'protected':"PROTECTED",
+    'private':"PRIVATE",
+    'class':'CLASS',
+    'extends':"EXTENDS",
+    'implements':"IMPLEMENTS",
+    "abstract":"ABSTRACT",
+    'interface':"INTERFACE",
+    'final':'FINAL',
+    'const':"CONST",
+    'null':"NULL",
+    'true':"TRUE",
+    "false":"FALSE",
+    'void':"VOID",
+    'bool':"BOOL",
+    'string':"STRING",
+
     # Añade más palabras reservadas según lo necesites
 }
 
@@ -23,6 +45,7 @@ class MyLexer(object):
        "INCREMENT",##Incremento
        "DECREMENT",
        "VARIABLE",##Variable
+       "STRING",
        'EQUALS',  ##Igualdad y relaciones     
         'NOT_EQUALS',   
         'GREATER_THAN',
@@ -35,9 +58,16 @@ class MyLexer(object):
         "ASSIGN",##Asignacion
         "NULL_ASSIGN",
         "COMPOSED_ASSIGN",
+        "NEGATION",##OPERADORES LOGICOS
+        "AND",
+        "OR",
+        "SEMICOLON",
+        "INTEGER",
+        "LBRACKETS",
+        "RBRACKETS",
         
 
-
+    
 
     ) + tuple(reserved.values())
 
@@ -48,9 +78,15 @@ class MyLexer(object):
     t_DIVIDE  = r'/'
     t_LPAREN  = r'\('
     t_RPAREN  = r'\)'
+    t_LBRACKETS = r'\{'
+    t_RBRACKETS = r'\}'
 
 
     #OPERADORES
+
+    def t_INTEGER(self,t):
+        r'int'
+        return t
 
     def t_MODULE(self,t):
         r'\%' 
@@ -122,6 +158,30 @@ class MyLexer(object):
     def t_VARIABLE(self,t):
         r'[a-zA-Z_][a-zA-Z_0-9]*'
         return t
+    
+    def t_NEGATION(self,t):
+        r'\!'
+        return t
+    
+    def t_AND(self,t):
+        r'\&&'
+        return t
+
+    def t_OR(self,t):
+        r'\|\|'
+        return t
+    
+    
+    def t_STRING(self,t):
+        r'\'[a-zA-Z_][a-zA-Z_0-9]*\''
+        return t
+    
+    def t_SEMICOLON(self,t):
+        r'\;'
+        return t
+    
+    
+
 
     # A regular expression rule with some action code
     # Note addition of self parameter since we're in a class
@@ -164,4 +224,37 @@ class MyLexer(object):
 # Build the lexer and try it out
 m = MyLexer()
 m.build()           # Build the lexer
-m.test("if(5 % 2++) = 3  var*=2")     # Test it
+m.test("""  int a = 10;
+  int b = 3;
+  int result;
+
+  result = a - b;
+  
+  result = a * b; 
+  
+  result = a ~/ b;
+
+  result = a % b; 
+  
+  a++; 
+  a--;
+
+  bool isEqual = (a == b); 
+  bool isNotEqual = (a != b); 
+  bool greaterThan = (a > b); 
+  bool lessThan = (a < b); 
+  bool greaterOrEqual = (a >= b); 
+  bool lessOrEqual = (a <= b); 
+  String text = 'Dart';
+  bool andOperator = (a > b && b > 0); 
+  bool orOperator = (a > b || b < 0); 
+
+    if (result > 0) {
+        result++;
+    } else {
+        result--;
+    }
+
+   while (result < 3) {
+    result++;
+  }""")     # Test it
