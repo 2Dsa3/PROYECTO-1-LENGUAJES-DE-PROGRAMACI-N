@@ -3,6 +3,8 @@ import datetime
 import subprocess
 from pathlib import Path
 
+#Aporte Michael Poveda
+###
 # Palabras reservadas y tipos de datos
 reserved = {
     'if': 'IF', 'else': 'ELSE', 'while': 'WHILE', 'for': 'FOR', 'do': 'DO', 'break': 'BREAK',
@@ -23,7 +25,7 @@ tokens = (
     'LINE_COMMENT', 'BLOCK_COMMENT', 'DOC_COMMENT', 'EQUALS', 'NOT_EQUALS', 'GREATER_THAN',
     'LESS_THAN', 'GREATER_EQ', 'LESS_EQ', 'AS', 'IS', 'IS_NOT', 'ASSIGN', 'NULL_ASSIGN',
     'COMPOSED_ASSIGN', 'NEGATION', 'AND', 'OR', 'MODULE', 'INTEGER_DIVIDE', 'INCREMENT',
-    'DECREMENT', 'STRING_LITERAL','TYPE_SPECIFIER','NULLABLE'
+    'DECREMENT', 'STRING_LITERAL'
 ) + tuple(reserved.values())
 
 # Expresiones regulares para tokens
@@ -57,7 +59,7 @@ t_NULL_ASSIGN = r'\?\?='
 t_NEGATION = r'!'
 t_AND = r'&&'
 t_OR = r'\|\|'
-t_QUESTION_MARK = r'\?'
+
 
 
 # Comentarios
@@ -72,7 +74,7 @@ def t_BLOCK_COMMENT(t):
 def t_DOC_COMMENT(t):
     r'///.*|/\*+.*\*+/'
     pass
-
+###
 # Identificación de literales de cadenas
 def t_STRING_LITERAL(t):
     r'\'[^\']*\'|"[^"]*"'
