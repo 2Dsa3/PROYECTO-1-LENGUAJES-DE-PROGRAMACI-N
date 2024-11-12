@@ -1,4 +1,6 @@
 import ply.lex as lex
+import datetime
+import subprocess
 
 
 reserved = {'if': 'IF', 'else': 'ELSE', 'while': 'WHILE', 'for': 'FOR', 'input': 'INPUT', 'print':'PRINT'}
@@ -58,10 +60,32 @@ t_ignore = ' \t'
 
 # Error handling rule
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
+    error_msg = f"Illegal character '{t.value[0]}'"
+    log_error(error_msg)  # log the error
     t.lexer.skip(1)
 
-#
+# Find git user for filename
+def get_git_user():
+    try:
+        user_name = subprocess.check_output(['git', 'config', '--get', 'user.name']).strip().decode()
+        return user_name
+    except subprocess.CalledProcessError:
+        return 'unknown_user'
+
+def generate_log_filename():
+    now = datetime.datetime.now()
+    user_git = get_git_user()  # Obtener el nombre del usuario de Git
+    return f"logs/lexico-{user_git}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
+
+# Register tokens in file
+def log_token(token):
+    with open(log_filename, 'a') as log_file:
+        log_file.write(f"Token: {token.type}, Value: {token.value}, Line: {token.lineno}\n")
+
+def log_error(error_msg):
+    with open(log_filename, 'a') as log_file:
+        log_file.write(f"ERROR: {error_msg}\n")
+
 # Build the lexer
 lexer = lex.lex()
 
@@ -73,9 +97,21 @@ data = '''
 # Give the lexer some input
 lexer.input(data)
 
+# Generate log file
+log_filename = generate_log_filename()
+
+# Write header in log file
+with open(log_filename, 'w') as log_file:
+    log_file.write(f"Lex-analizer started at: {datetime.datetime.now()}\n\n")
+
+lexer.input(data)
+
 # Tokenize
 while True:
     tok = lexer.token()
     if not tok:
         break  # No more input
-    print(tok)
+    log_token(tok)
+
+with open(log_filename, 'a') as log_file:
+    log_file.write(f"\nLex-analizer finished at: {datetime.datetime.now()}\n")
