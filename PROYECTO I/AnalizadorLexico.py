@@ -10,7 +10,7 @@ reserved = {
     'if': 'IF', 'else': 'ELSE', 'while': 'WHILE', 'for': 'FOR', 'do': 'DO', 'break': 'BREAK',
     'continue': 'CONTINUE', 'public': 'PUBLIC', 'protected': 'PROTECTED', 'private': 'PRIVATE',
     'class': 'CLASS', 'extends': 'EXTENDS', 'implements': 'IMPLEMENTS', 'abstract': 'ABSTRACT',
-    'interface': 'INTERFACE', 'final': 'FINAL', 'const': 'CONST', 'null': 'NULL',
+    'interface': 'INTERFACE', 'final': 'FINAL', 'const': 'CONST', 'null': 'NULL', 'print': 'PRINT',
     'true': 'TRUE', 'false': 'FALSE', 'void': 'VOID', 'bool': 'BOOL', 'String': 'STRING',
     'int': 'INTEGER', 'double': 'DOUBLE',  # Añadimos 'double' para análisis léxico
     'List': 'LIST', 'Set': 'SET', 'Map': 'MAP', 'Stack': 'STACK', 'Queue': 'QUEUE',
@@ -161,7 +161,7 @@ def read_dart_file(file_path):
         return file.read()
 
 # Archivo Dart para analizar
-algorithm = 'Algoritmo2.dart'
+algorithm = 'Algoritmo1.dart'
 data = read_dart_file(Path(algorithm))
 
 # Generar log

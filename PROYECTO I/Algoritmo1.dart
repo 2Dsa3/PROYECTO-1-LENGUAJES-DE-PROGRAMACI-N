@@ -26,7 +26,7 @@ void main() {
   if (esAdulto) {
     print("$nombre es un adulto.");
   } else {
-    print("$nombre no es un adulto.");
+    abc("$nombre no es un adulto.");
   }
 
   for (int i = 0; i < numeros.length; i++) {
