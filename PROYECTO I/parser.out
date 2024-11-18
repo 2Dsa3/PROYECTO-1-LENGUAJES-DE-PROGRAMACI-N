@@ -1,0 +1,248 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ABSTRACT
+    AND
+    AS
+    ASSIGN
+    BLOCK_COMMENT
+    BOOL
+    BREAK
+    CLASS
+    COLON
+    COMMA
+    COMPOSED_ASSIGN
+    CONST
+    CONTINUE
+    DECREMENT
+    DO
+    DOC_COMMENT
+    DOT
+    DOUBLE
+    ELSE
+    EQUALS
+    EXTENDS
+    FALSE
+    FINAL
+    FLOAT
+    FOR
+    GRAPH
+    GREATER_EQ
+    GREATER_THAN
+    HASH
+    IF
+    IMPLEMENTS
+    INCREMENT
+    INTEGER
+    INTEGER_DIVIDE
+    INTERFACE
+    IS
+    IS_NOT
+    LBRACE
+    LESS_EQ
+    LESS_THAN
+    LINE_COMMENT
+    LIST
+    LPAREN
+    LSQUARE
+    MAP
+    NEGATION
+    NOT_EQUALS
+    NULL
+    NULL_ASSIGN
+    OR
+    PRINT
+    PRIVATE
+    PROTECTED
+    PUBLIC
+    QUEUE
+    RBRACE
+    RPAREN
+    RSQUARE
+    SEMICOLON
+    SET
+    STACK
+    STRING
+    STRING_LITERAL
+    TREE
+    TRUE
+    VARIABLE
+    VOID
+    WHILE
+
+Grammar
+
+Rule 0     S' -> asignacion
+Rule 1     asignacion -> NUMBER operador NUMBER
+Rule 2     operador -> PLUS
+Rule 3     operador -> MINUS
+Rule 4     operador -> TIMES
+Rule 5     operador -> DIVIDE
+Rule 6     operador -> MODULE
+
+Terminals, with rules where they appear
+
+ABSTRACT             : 
+AND                  : 
+AS                   : 
+ASSIGN               : 
+BLOCK_COMMENT        : 
+BOOL                 : 
+BREAK                : 
+CLASS                : 
+COLON                : 
+COMMA                : 
+COMPOSED_ASSIGN      : 
+CONST                : 
+CONTINUE             : 
+DECREMENT            : 
+DIVIDE               : 5
+DO                   : 
+DOC_COMMENT          : 
+DOT                  : 
+DOUBLE               : 
+ELSE                 : 
+EQUALS               : 
+EXTENDS              : 
+FALSE                : 
+FINAL                : 
+FLOAT                : 
+FOR                  : 
+GRAPH                : 
+GREATER_EQ           : 
+GREATER_THAN         : 
+HASH                 : 
+IF                   : 
+IMPLEMENTS           : 
+INCREMENT            : 
+INTEGER              : 
+INTEGER_DIVIDE       : 
+INTERFACE            : 
+IS                   : 
+IS_NOT               : 
+LBRACE               : 
+LESS_EQ              : 
+LESS_THAN            : 
+LINE_COMMENT         : 
+LIST                 : 
+LPAREN               : 
+LSQUARE              : 
+MAP                  : 
+MINUS                : 3
+MODULE               : 6
+NEGATION             : 
+NOT_EQUALS           : 
+NULL                 : 
+NULL_ASSIGN          : 
+NUMBER               : 1 1
+OR                   : 
+PLUS                 : 2
+PRINT                : 
+PRIVATE              : 
+PROTECTED            : 
+PUBLIC               : 
+QUEUE                : 
+RBRACE               : 
+RPAREN               : 
+RSQUARE              : 
+SEMICOLON            : 
+SET                  : 
+STACK                : 
+STRING               : 
+STRING_LITERAL       : 
+TIMES                : 4
+TREE                 : 
+TRUE                 : 
+VARIABLE             : 
+VOID                 : 
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+asignacion           : 0
+operador             : 1
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . asignacion
+    (1) asignacion -> . NUMBER operador NUMBER
+
+    NUMBER          shift and go to state 2
+
+    asignacion                     shift and go to state 1
+
+state 1
+
+    (0) S' -> asignacion .
+
+
+
+state 2
+
+    (1) asignacion -> NUMBER . operador NUMBER
+    (2) operador -> . PLUS
+    (3) operador -> . MINUS
+    (4) operador -> . TIMES
+    (5) operador -> . DIVIDE
+    (6) operador -> . MODULE
+
+    PLUS            shift and go to state 4
+    MINUS           shift and go to state 5
+    TIMES           shift and go to state 6
+    DIVIDE          shift and go to state 7
+    MODULE          shift and go to state 8
+
+    operador                       shift and go to state 3
+
+state 3
+
+    (1) asignacion -> NUMBER operador . NUMBER
+
+    NUMBER          shift and go to state 9
+
+
+state 4
+
+    (2) operador -> PLUS .
+
+    NUMBER          reduce using rule 2 (operador -> PLUS .)
+
+
+state 5
+
+    (3) operador -> MINUS .
+
+    NUMBER          reduce using rule 3 (operador -> MINUS .)
+
+
+state 6
+
+    (4) operador -> TIMES .
+
+    NUMBER          reduce using rule 4 (operador -> TIMES .)
+
+
+state 7
+
+    (5) operador -> DIVIDE .
+
+    NUMBER          reduce using rule 5 (operador -> DIVIDE .)
+
+
+state 8
+
+    (6) operador -> MODULE .
+
+    NUMBER          reduce using rule 6 (operador -> MODULE .)
+
+
+state 9
+
+    (1) asignacion -> NUMBER operador NUMBER .
+
+    $end            reduce using rule 1 (asignacion -> NUMBER operador NUMBER .)
+

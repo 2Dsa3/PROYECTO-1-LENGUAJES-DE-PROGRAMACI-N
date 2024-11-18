@@ -126,58 +126,59 @@ t_ignore = ' \t'
 # Manejo de errores
 def t_error(t):
     error_msg = f"Illegal character '{t.value[0]}'"
-    log_error(error_msg)
+    #log_error(error_msg)
     t.lexer.skip(1)
 
 #Aporte Juan Severino 
 ###
 # Funciones para el log
-def get_git_user():
-    try:
-        user_name = subprocess.check_output(['git', 'config', '--get', 'user.name']).strip().decode()
-        return user_name
-    except subprocess.CalledProcessError:
-        return 'unknown_user'
 
-def generate_log_filename():
-    now = datetime.datetime.now()
-    user_git = get_git_user()
-    return f"logs/lexico-{user_git}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
+# def get_git_user():
+#     try:
+#         user_name = subprocess.check_output(['git', 'config', '--get', 'user.name']).strip().decode()
+#         return user_name
+#     except subprocess.CalledProcessError:
+#         return 'unknown_user'
 
-def log_token(token):
-    with open(log_filename, 'a') as log_file:
-        log_file.write(f"Token: {token.type}, Value: {token.value}, Line: {token.lineno}\n")
+# def generate_log_filename():
+#     now = datetime.datetime.now()
+#     user_git = get_git_user()
+#     return f"logs/lexico-{user_git}-{now.strftime('%d%m%Y-%Hh%M')}.txt"
 
-def log_error(error_msg):
-    with open(log_filename, 'a') as log_file:
-        log_file.write(f"ERROR: {error_msg}\n")
+# def log_token(token):
+#     with open(log_filename, 'a') as log_file:
+#         log_file.write(f"Token: {token.type}, Value: {token.value}, Line: {token.lineno}\n")
+
+# def log_error(error_msg):
+#     with open(log_filename, 'a') as log_file:
+#         log_file.write(f"ERROR: {error_msg}\n")
 ###
 # Inicializar lexer
 lexer = lex.lex()
 
-# Lectura de archivos
-def read_dart_file(file_path):
-    with open(file_path, 'r') as file:
-        return file.read()
+# # Lectura de archivos
+# def read_dart_file(file_path):
+#     with open(file_path, 'r') as file:
+#         return file.read()
 
-# Archivo Dart para analizar
-algorithm = 'Algoritmo1.dart'
-data = read_dart_file(Path(algorithm))
+# # Archivo Dart para analizar
+# algorithm = 'Algoritmo1.dart'
+# data = read_dart_file(Path(algorithm))
 
-# Generar log
-log_filename = generate_log_filename()
+# # Generar log
+# log_filename = generate_log_filename()
 
-# Encabezado del log
-with open(log_filename, 'w') as log_file:
-    log_file.write(f"Lex-analyzer started at: {datetime.datetime.now()}\n\n")
+# # Encabezado del log
+# with open(log_filename, 'w') as log_file:
+#     log_file.write(f"Lex-analyzer started at: {datetime.datetime.now()}\n\n")
 
-# Analizar tokens
-lexer.input(data)
-while True:
-    tok = lexer.token()
-    if not tok:
-        break
-    log_token(tok)
+# # Analizar tokens
+# lexer.input(data)
+# while True:
+#     tok = lexer.token()
+#     if not tok:
+#         break
+#     log_token(tok)
 
-with open(log_filename, 'a') as log_file:
-    log_file.write(f"\nLex-analyzer finished at: {datetime.datetime.now()}\n")
+# with open(log_filename, 'a') as log_file:
+#     log_file.write(f"\nLex-analyzer finished at: {datetime.datetime.now()}\n")
