@@ -1,0 +1,11 @@
+Syntax-analyzer started at: 2024-11-18 11:38:57.821812
+
+ERROR: Syntax error at line 43: Unexpected token '('
+ERROR: Syntax error at line 46: Unexpected token '"Carlos"'
+ERROR: Syntax error at line 49: Unexpected token 'peso'
+ERROR: Syntax error at line 53: Unexpected token '"Pérez"'
+ERROR: Syntax error at line 64: Unexpected token 'edad'
+ERROR: Syntax error at line 73: Unexpected token '<'
+
+Syntax-analyzer finished at: 2024-11-18 11:38:57.833829
+
