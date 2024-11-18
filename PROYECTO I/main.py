@@ -58,6 +58,9 @@ def p_condition(p):
     p[0] = f"{p[1]} {p[2]} {p[3]}"
 
 
+    
+
+
 def p_switch(p):
     '''statement : SWITCH LPAREN expression RPAREN LBRACE cases default RBRACE'''
     p[0] = f"switch ({p[3]}) {{\n{p[6]}\n{p[7]}\n}}"

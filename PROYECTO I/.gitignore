@@ -1,1 +1,7 @@
-ignore_folder/
+.venv
+.env
+__pycache__/
+.idea
+.vscode
+parser.out
+parsetab.py
