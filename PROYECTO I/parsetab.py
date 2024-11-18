@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ABSTRACT AND AS ASSIGN BLOCK_COMMENT BOOL BREAK CLASS COLON COMMA COMPOSED_ASSIGN CONST CONTINUE DECREMENT DIVIDE DO DOC_COMMENT DOT DOUBLE ELSE EQUALS EXTENDS FALSE FINAL FLOAT FOR GRAPH GREATER_EQ GREATER_THAN HASH IF IMPLEMENTS INCREMENT INTEGER INTEGER_DIVIDE INTERFACE IS IS_NOT LBRACE LESS_EQ LESS_THAN LINE_COMMENT LIST LPAREN LSQUARE MAP MINUS MODULE NEGATION NOT_EQUALS NULL NULL_ASSIGN NUMBER OR PLUS PRINT PRIVATE PROTECTED PUBLIC QUEUE RBRACE RPAREN RSQUARE SEMICOLON SET STACK STRING STRING_LITERAL TIMES TREE TRUE VARIABLE VOID WHILEasignacion : NUMBER operador NUMBERoperador : PLUS\n              | MINUS\n              | TIMES\n              | DIVIDE \n              | MODULE'
+_lr_signature = 'ABSTRACT AND AS ASSIGN BLOCK_COMMENT BOOL BREAK CASE CLASS COLON COMMA COMPOSED_ASSIGN CONST CONTINUE DECREMENT DEFAULT DIVIDE DO DOC_COMMENT DOT DOUBLE ELSE EQUALS EXTENDS FALSE FINAL FLOAT FOR GRAPH GREATER_EQ GREATER_THAN HASH IF IMPLEMENTS INCREMENT INTEGER INTEGER_DIVIDE INTERFACE IS IS_NOT LBRACE LESS_EQ LESS_THAN LINE_COMMENT LIST LPAREN LSQUARE MAP MINUS MODULE NEGATION NOT_EQUALS NULL NULL_ASSIGN NUMBER OR PLUS PRINT PRIVATE PROTECTED PUBLIC QUEUE RBRACE RPAREN RSQUARE SEMICOLON SET STACK STRING STRING_LITERAL SWITCH TIMES TREE TRUE VARIABLE VOID WHILEprograma : sentencias\n                | sentencias programasentencias : expression\n            | statementexpression : expression PLUS expression\n                  | expression MINUS expression\n                  | expression TIMES expression\n                  | expression DIVIDE expression\n                  | expression MODULE expressionexpression : LPAREN expression RPARENexpression : NUMBERexpression : VARIABLEstatement : IF condition condition : expression GREATER_THAN expression\n                 | expression LESS_THAN expression\n                 | expression GREATER_EQ expression\n                 | expression LESS_EQ expression\n                 | expression EQUALS expression\n                 | expression NOT_EQUALS expressionstatement : SWITCH LPAREN expression RPAREN LBRACE cases default RBRACEcases : cases case\n             | casecase : CASE NUMBER COLON statements BREAK SEMICOLONdefault : DEFAULT COLON statements\n               | emptystatements : statement\n                  | statement statementsstatement : VARIABLE EQUALS expression SEMICOLONempty :'
     
-_lr_action_items = {'NUMBER':([0,3,4,5,6,7,8,],[2,9,-2,-3,-4,-5,-6,]),'$end':([1,9,],[0,-1,]),'PLUS':([2,],[4,]),'MINUS':([2,],[5,]),'TIMES':([2,],[6,]),'DIVIDE':([2,],[7,]),'MODULE':([2,],[8,]),}
+_lr_action_items = {'LPAREN':([0,2,3,4,5,6,7,8,9,11,12,13,14,15,17,18,19,21,22,23,24,25,26,27,29,30,31,32,33,34,36,37,38,39,40,41,42,53,],[5,5,-3,-4,5,-11,-12,5,21,5,5,5,5,5,-12,5,-13,5,-5,-6,-7,-8,-9,-10,5,5,5,5,5,5,-28,-14,-15,-16,-17,-18,-19,-20,]),'NUMBER':([0,2,3,4,5,6,7,8,11,12,13,14,15,17,18,19,21,22,23,24,25,26,27,29,30,31,32,33,34,36,37,38,39,40,41,42,47,53,],[6,6,-3,-4,6,-11,-12,6,6,6,6,6,6,-12,6,-13,6,-5,-6,-7,-8,-9,-10,6,6,6,6,6,6,-28,-14,-15,-16,-17,-18,-19,52,-20,]),'VARIABLE':([0,2,3,4,5,6,7,8,11,12,13,14,15,17,18,19,21,22,23,24,25,26,27,29,30,31,32,33,34,36,37,38,39,40,41,42,53,54,55,57,],[7,7,-3,-4,17,-11,-12,17,17,17,17,17,17,-12,17,-13,17,-5,-6,-7,-8,-9,-10,17,17,17,17,17,17,-28,-14,-15,-16,-17,-18,-19,-20,58,58,58,]),'IF':([0,2,3,4,6,7,17,19,22,23,24,25,26,27,36,37,38,39,40,41,42,53,54,55,57,],[8,8,-3,-4,-11,-12,-12,-13,-5,-6,-7,-8,-9,-10,-28,-14,-15,-16,-17,-18,-19,-20,8,8,8,]),'SWITCH':([0,2,3,4,6,7,17,19,22,23,24,25,26,27,36,37,38,39,40,41,42,53,54,55,57,],[9,9,-3,-4,-11,-12,-12,-13,-5,-6,-7,-8,-9,-10,-28,-14,-15,-16,-17,-18,-19,-20,9,9,9,]),'$end':([1,2,3,4,6,7,10,17,19,22,23,24,25,26,27,36,37,38,39,40,41,42,53,],[0,-1,-3,-4,-11,-12,-2,-12,-13,-5,-6,-7,-8,-9,-10,-28,-14,-15,-16,-17,-18,-19,-20,]),'PLUS':([3,6,7,16,17,20,22,23,24,25,26,27,28,35,37,38,39,40,41,42,],[11,-11,-12,11,-12,11,11,11,11,11,11,-10,11,11,11,11,11,11,11,11,]),'MINUS':([3,6,7,16,17,20,22,23,24,25,26,27,28,35,37,38,39,40,41,42,],[12,-11,-12,12,-12,12,12,12,12,12,12,-10,12,12,12,12,12,12,12,12,]),'TIMES':([3,6,7,16,17,20,22,23,24,25,26,27,28,35,37,38,39,40,41,42,],[13,-11,-12,13,-12,13,13,13,13,13,13,-10,13,13,13,13,13,13,13,13,]),'DIVIDE':([3,6,7,16,17,20,22,23,24,25,26,27,28,35,37,38,39,40,41,42,],[14,-11,-12,14,-12,14,14,14,14,14,14,-10,14,14,14,14,14,14,14,14,]),'MODULE':([3,6,7,16,17,20,22,23,24,25,26,27,28,35,37,38,39,40,41,42,],[15,-11,-12,15,-12,15,15,15,15,15,15,-10,15,15,15,15,15,15,15,15,]),'RPAREN':([6,16,17,22,23,24,25,26,27,35,],[-11,27,-12,-5,-6,-7,-8,-9,-10,43,]),'GREATER_THAN':([6,17,20,22,23,24,25,26,27,],[-11,-12,29,-5,-6,-7,-8,-9,-10,]),'LESS_THAN':([6,17,20,22,23,24,25,26,27,],[-11,-12,30,-5,-6,-7,-8,-9,-10,]),'GREATER_EQ':([6,17,20,22,23,24,25,26,27,],[-11,-12,31,-5,-6,-7,-8,-9,-10,]),'LESS_EQ':([6,17,20,22,23,24,25,26,27,],[-11,-12,32,-5,-6,-7,-8,-9,-10,]),'EQUALS':([6,7,17,20,22,23,24,25,26,27,58,],[-11,18,-12,33,-5,-6,-7,-8,-9,-10,18,]),'NOT_EQUALS':([6,17,20,22,23,24,25,26,27,],[-11,-12,34,-5,-6,-7,-8,-9,-10,]),'SEMICOLON':([6,17,22,23,24,25,26,27,28,61,],[-11,-12,-5,-6,-7,-8,-9,-10,36,62,]),'RBRACE':([6,17,19,22,23,24,25,26,27,36,37,38,39,40,41,42,45,46,48,49,51,53,56,57,60,62,],[-11,-12,-13,-5,-6,-7,-8,-9,-10,-28,-14,-15,-16,-17,-18,-19,-29,-22,53,-21,-25,-20,-24,-26,-27,-23,]),'BREAK':([6,17,19,22,23,24,25,26,27,36,37,38,39,40,41,42,53,57,59,60,],[-11,-12,-13,-5,-6,-7,-8,-9,-10,-28,-14,-15,-16,-17,-18,-19,-20,-26,61,-27,]),'LBRACE':([43,],[44,]),'CASE':([44,45,46,49,62,],[47,47,-22,-21,-23,]),'DEFAULT':([45,46,49,62,],[50,-22,-21,-23,]),'COLON':([50,52,],[54,55,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'asignacion':([0,],[1,]),'operador':([2,],[3,]),}
+_lr_goto_items = {'programa':([0,2,],[1,10,]),'sentencias':([0,2,],[2,2,]),'expression':([0,2,5,8,11,12,13,14,15,18,21,29,30,31,32,33,34,],[3,3,16,20,22,23,24,25,26,28,35,37,38,39,40,41,42,]),'statement':([0,2,54,55,57,],[4,4,57,57,57,]),'condition':([8,],[19,]),'cases':([44,],[45,]),'case':([44,45,],[46,49,]),'default':([45,],[48,]),'empty':([45,],[51,]),'statements':([54,55,57,],[56,59,60,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,11 +26,34 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> asignacion","S'",1,None,None,None),
-  ('asignacion -> NUMBER operador NUMBER','asignacion',3,'p_asignacion','main.py',6),
-  ('operador -> PLUS','operador',1,'p_operador','main.py',9),
-  ('operador -> MINUS','operador',1,'p_operador','main.py',10),
-  ('operador -> TIMES','operador',1,'p_operador','main.py',11),
-  ('operador -> DIVIDE','operador',1,'p_operador','main.py',12),
-  ('operador -> MODULE','operador',1,'p_operador','main.py',13),
+  ("S' -> programa","S'",1,None,None,None),
+  ('programa -> sentencias','programa',1,'p_programa','main.py',6),
+  ('programa -> sentencias programa','programa',2,'p_programa','main.py',7),
+  ('sentencias -> expression','sentencias',1,'p_sentencias','main.py',10),
+  ('sentencias -> statement','sentencias',1,'p_sentencias','main.py',11),
+  ('expression -> expression PLUS expression','expression',3,'p_expression_binop','main.py',14),
+  ('expression -> expression MINUS expression','expression',3,'p_expression_binop','main.py',15),
+  ('expression -> expression TIMES expression','expression',3,'p_expression_binop','main.py',16),
+  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop','main.py',17),
+  ('expression -> expression MODULE expression','expression',3,'p_expression_binop','main.py',18),
+  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','main.py',32),
+  ('expression -> NUMBER','expression',1,'p_expression_number','main.py',36),
+  ('expression -> VARIABLE','expression',1,'p_expression_variable','main.py',41),
+  ('statement -> IF condition','statement',2,'p_conditional_if','main.py',47),
+  ('condition -> expression GREATER_THAN expression','condition',3,'p_condition','main.py',53),
+  ('condition -> expression LESS_THAN expression','condition',3,'p_condition','main.py',54),
+  ('condition -> expression GREATER_EQ expression','condition',3,'p_condition','main.py',55),
+  ('condition -> expression LESS_EQ expression','condition',3,'p_condition','main.py',56),
+  ('condition -> expression EQUALS expression','condition',3,'p_condition','main.py',57),
+  ('condition -> expression NOT_EQUALS expression','condition',3,'p_condition','main.py',58),
+  ('statement -> SWITCH LPAREN expression RPAREN LBRACE cases default RBRACE','statement',8,'p_switch','main.py',63),
+  ('cases -> cases case','cases',2,'p_cases','main.py',67),
+  ('cases -> case','cases',1,'p_cases','main.py',68),
+  ('case -> CASE NUMBER COLON statements BREAK SEMICOLON','case',6,'p_case','main.py',75),
+  ('default -> DEFAULT COLON statements','default',3,'p_default','main.py',79),
+  ('default -> empty','default',1,'p_default','main.py',80),
+  ('statements -> statement','statements',1,'p_statements','main.py',87),
+  ('statements -> statement statements','statements',2,'p_statements','main.py',88),
+  ('statement -> VARIABLE EQUALS expression SEMICOLON','statement',4,'p_statement_assignment','main.py',95),
+  ('empty -> <empty>','empty',0,'p_empty','main.py',100),
 ]

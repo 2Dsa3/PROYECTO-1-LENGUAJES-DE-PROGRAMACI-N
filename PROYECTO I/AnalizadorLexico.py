@@ -7,7 +7,9 @@ from pathlib import Path
 ###
 # Palabras reservadas y tipos de datos
 reserved = {
-    'if': 'IF', 'else': 'ELSE', 'while': 'WHILE', 'for': 'FOR', 'do': 'DO', 'break': 'BREAK',
+    'if': 'IF', 'else': 'ELSE', 'while': 'WHILE', 'for': 'FOR', 'do': 'DO', 'break': 'BREAK','switch': 'SWITCH',
+    'case': 'CASE',
+    'default': 'DEFAULT',
     'continue': 'CONTINUE', 'public': 'PUBLIC', 'protected': 'PROTECTED', 'private': 'PRIVATE',
     'class': 'CLASS', 'extends': 'EXTENDS', 'implements': 'IMPLEMENTS', 'abstract': 'ABSTRACT',
     'interface': 'INTERFACE', 'final': 'FINAL', 'const': 'CONST', 'null': 'NULL', 'print': 'PRINT',
