@@ -1,0 +1,8 @@
+PROYECTO I/.venv
+PROYECTO I/.env
+PROYECTO I/__pycache__/
+PROYECTO I/parser.out
+PROYECTO I/parsetab.py
+
+.idea
+.vscode
