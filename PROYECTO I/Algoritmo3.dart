@@ -1,7 +1,7 @@
 // Main program entry point
 void main() {
   // Initialize a variable
-  int a = 5;
+  int a == 5;
   int b = 10;
 
   // Perform an operation

@@ -1,4 +1,3 @@
-//David Sumba Correa
 void main() {
   int edad = 20;
   double altura = 1.70;
@@ -26,7 +25,7 @@ void main() {
   if (esAdulto) {
     print("$nombre es un adulto.");
   } else {
-    abc("$nombre no es un adulto.");
+    print("$nombre no es un adulto.");
   }
 
   for (int i = 0; i < numeros.length; i++) {

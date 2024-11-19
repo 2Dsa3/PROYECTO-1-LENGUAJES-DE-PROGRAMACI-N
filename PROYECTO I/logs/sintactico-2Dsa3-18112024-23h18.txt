@@ -1,0 +1,7 @@
+Syntax-analyzer started at: 2024-11-18 23:18:32.271181
+
+ERROR: Syntax error at line 42: Unexpected token '('
+ERROR: Syntax error at line 48: Unexpected token 'addNumbers'
+
+Syntax-analyzer finished at: 2024-11-18 23:18:32.287178
+
