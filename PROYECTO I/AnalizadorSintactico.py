@@ -21,7 +21,8 @@ def p_statements(p):
 # Agregar aqui mas formas de statement
 def p_statement(p):
     """statement : var_declaration
-                 | data_structure"""
+                 | data_structure
+                 | control_structure"""
     p[0] = p[1]
 
 
@@ -168,6 +169,59 @@ def p_key_value(p):
     """key_value : expression COLON expression"""
     p[0] = (p[1], p[3])
 
+#Reglas para la estructuras de control
+
+def p_control_structure(p):
+    """control_structure : if_structure
+                        | switch_structure"""
+    
+
+## regla if
+def p_if(p):
+    """if_structure : IF LPAREN condition RPAREN LBRACE statement RBRACE"""
+    p[0] = f"if ({p[2]})"
+
+#Regla para switch 
+def p_switch(p):
+    '''switch_structure : SWITCH LPAREN expression RPAREN LBRACE cases default RBRACE'''
+    p[0] = f"switch ({p[3]}) {{\n{p[6]}\n{p[7]}\n}}"
+
+
+def p_condition(p):
+    '''condition : expression GREATER_THAN expression
+                 | expression LESS_THAN expression
+                 | expression GREATER_EQ expression
+                 | expression LESS_EQ expression
+                 | expression EQUALS expression
+                 | expression NOT_EQUALS expression'''
+    p[0] = f"{p[1]} {p[2]} {p[3]}"
+
+
+def p_cases(p):
+    '''cases : cases case
+             | case'''
+    if len(p) == 3:
+        p[0] = p[1] + '\n' + p[2]
+    else:
+        p[0] = p[1]
+
+def p_case(p):
+    '''case : CASE NUMBER COLON statement BREAK SEMICOLON'''
+    p[0] = f"case {p[2]}:\n{p[4]}\nbreak;"
+
+def p_default(p):
+    '''default : DEFAULT COLON statement
+               | empty'''
+    if len(p) == 4:
+        p[0] = f"default:\n{p[3]}"
+    else:
+        p[0] = ''
+
+def p_empty(p):
+    'empty :'
+    p[0] = ''
+
+
 
 # Manejo de errores
 def p_error(p):
@@ -181,7 +235,8 @@ def log_error(error_msg):
 
 
 # Archivo Dart para analizar
-algorithm = 'Algoritmo1.dart'
+
+algorithm = 'Algoritmo2.dart'
 
 log_filename = generate_log_filename('sintactico')
 

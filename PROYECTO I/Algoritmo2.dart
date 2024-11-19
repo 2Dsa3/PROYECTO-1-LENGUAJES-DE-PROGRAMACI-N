@@ -35,5 +35,16 @@ void main() {
     result++;
   }
 
+  switch (variable) {
+    case value1:
+      1+1
+      break;
+    case value2:
+      2+2
+      break;
+    default:
+      3-2
+  }
+
 
 }
