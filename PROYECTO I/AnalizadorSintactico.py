@@ -133,7 +133,8 @@ def p_num_expression_group(p):
 # Reglas para estructuras de datos
 def p_data_structure(p):
     """data_structure : list_structure
-                      | map_structure"""
+                      | map_structure
+                      | set_structure"""
     p[0] = p[1]
 
 
@@ -146,6 +147,9 @@ def p_map_structure(p):
     """map_structure : LBRACE key_value_pairs RBRACE"""
     p[0] = ('map', p[2])
 
+def p_set_structure(p):
+    """set_structure : LBRACE elements RBRACE"""
+    p[0] = ('set', p[2])
 
 def p_elements(p):
     """elements : elements COMMA expression
@@ -221,8 +225,14 @@ def p_empty(p):
     'empty :'
     p[0] = ''
 
+def p_print(p):
+    '''statement : PRINT LPAREN expression RPAREN SEMICOLON'''
+    p[0] = f"print({p[3]});"
 
-
+def p_input(p):
+    '''statement : INPUT LPAREN expression RPAREN SEMICOLON'''
+    p[0] = f"input({p[3]});"
+    
 # Manejo de errores
 def p_error(p):
     error_msg = f"Syntax error at line {p.lineno}: Unexpected token '{p.value}'" if p else "Syntax error in EOF"
