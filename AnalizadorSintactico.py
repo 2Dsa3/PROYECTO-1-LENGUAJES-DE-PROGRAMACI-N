@@ -246,7 +246,7 @@ def log_error(error_msg):
 
 # Archivo Dart para analizar
 
-algorithm = 'Algoritmo2.dart'
+algorithm = 'algorithms/Algoritmo2.dart'
 
 log_filename = generate_log_filename('sintactico')
 

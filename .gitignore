@@ -1,8 +1,10 @@
-PROYECTO I/.venv
-PROYECTO I/.env
-PROYECTO I/__pycache__/
-PROYECTO I/parser.out
-PROYECTO I/parsetab.py
+__pycache__/
+
+parser.out
+parsetab.py
 
 .idea
 .vscode
+
+# virtual environment
+venv

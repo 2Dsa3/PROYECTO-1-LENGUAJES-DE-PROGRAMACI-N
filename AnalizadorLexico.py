@@ -163,7 +163,7 @@ def read_dart_file(file_path):
         return file.read()
 
 # Archivo Dart para analizar
-algorithm = 'Algoritmo1.dart'
+algorithm = 'algorithms/Algoritmo1.dart'
 data = read_dart_file(Path(algorithm))
 
 # Generar log
