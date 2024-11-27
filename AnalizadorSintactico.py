@@ -41,6 +41,7 @@ def p_var_declaration(p):
     """var_declaration : type VARIABLE ASSIGN value
                        | type VARIABLE ASSIGN bool_expression
                        | type VARIABLE ASSIGN num_expression
+                       | type VARIABLE ASSIGN data_structure
                        | type VARIABLE"""
     if len(p) == 5:
         p[0] = ('var_declaration_with_value', p[1], p[2], p[4])
@@ -59,7 +60,8 @@ def p_type(p):
             | GRAPH
             | DOUBLE
             | INTEGER
-            | BOOL"""
+            | BOOL
+            | VAR_TYPE"""
     p[0] = p[1]
 
 # Reglas para las expresiones
@@ -101,50 +103,50 @@ def p_bool_expression_value(p):
                        | FALSE"""
     p[0] = ('bool_value', p[1])
 
-# # Reglas para estructuras de datos
-# def p_data_structure(p):
-#     """data_structure : list_structure
-#                       | map_structure
-#                       | set_structure"""
-#     p[0] = p[1]
-#
-#
-# def p_list_structure(p):
-#     """list_structure : LSQUARE elements RSQUARE"""
-#     p[0] = ('list', p[2])
-#
-#
-# def p_map_structure(p):
-#     """map_structure : LBRACE key_value_pairs RBRACE"""
-#     p[0] = ('map', p[2])
-#
-# def p_set_structure(p):
-#     """set_structure : LBRACE elements RBRACE"""
-#     p[0] = ('set', p[2])
-#
-# def p_elements(p):
-#     """elements : elements COMMA expression
-#                 | expression"""
-#     if len(p) == 4:
-#         p[0] = p[1] + [p[3]]
-#     else:
-#         p[0] = [p[1]]
-#
-#
-# def p_key_value_pairs(p):
-#     """key_value_pairs : key_value_pairs COMMA key_value
-#                        | key_value"""
-#     if len(p) == 4:
-#         p[0] = p[1] + [p[3]]
-#     else:
-#         p[0] = [p[1]]
-#
-#
-# def p_key_value(p):
-#     """key_value : expression COLON expression"""
-#     p[0] = (p[1], p[3])
-#
-# #Reglas para la estructuras de control
+# Reglas para estructuras de datos
+def p_data_structure(p):
+    """data_structure : list_structure
+                      | map_structure
+                      | set_structure"""
+    p[0] = p[1]
+
+
+def p_list_structure(p):
+    """list_structure : LSQUARE elements RSQUARE"""
+    p[0] = ('list', p[2])
+
+
+def p_map_structure(p):
+    """map_structure : LBRACE key_value_pairs RBRACE"""
+    p[0] = ('map', p[2])
+
+def p_set_structure(p):
+    """set_structure : LBRACE elements RBRACE"""
+    p[0] = ('set', p[2])
+
+def p_elements(p):
+    """elements : elements COMMA value
+                | value"""
+    if len(p) == 4:
+        p[0] = p[1] + [p[3]]
+    else:
+        p[0] = [p[1]]
+
+
+def p_key_value_pairs(p):
+    """key_value_pairs : key_value_pairs COMMA key_value
+                       | key_value"""
+    if len(p) == 4:
+        p[0] = p[1] + [p[3]]
+    else:
+        p[0] = [p[1]]
+
+
+def p_key_value(p):
+    """key_value : value COLON value"""
+    p[0] = (p[1], p[3])
+
+# #Reglas para la estructuras de controlfirst': 'partridge',
 #
 # def p_control_structure(p):
 #     """control_structure : if_structure

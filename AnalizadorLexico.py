@@ -11,7 +11,7 @@ reserved = {
     'case': 'CASE',
     'default': 'DEFAULT',
     'continue': 'CONTINUE', 'public': 'PUBLIC', 'protected': 'PROTECTED', 'private': 'PRIVATE',
-    'class': 'CLASS', 'extends': 'EXTENDS', 'implements': 'IMPLEMENTS', 'abstract': 'ABSTRACT',
+    'class': 'CLASS', 'extends': 'EXTENDS', 'implements': 'IMPLEMENTS', 'abstract': 'ABSTRACT', 'var': 'VAR_TYPE',
     'interface': 'INTERFACE', 'final': 'FINAL', 'const': 'CONST', 'null': 'NULL', 'print': 'PRINT', 'main': 'MAIN',
     'true': 'TRUE', 'false': 'FALSE', 'void': 'VOID', 'bool': 'BOOL', 'String': 'STRING', 'dynamic': 'DYNAMIC',
     'int': 'INTEGER', 'double': 'DOUBLE',  # Añadimos 'double' para análisis léxico
