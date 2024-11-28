@@ -210,13 +210,11 @@ def p_key_value(p):
 # Manejo de errores
 S_Error = []
 def p_error(p):
-   
+    p.lineno = 1
+    S_Error.clear()
     if p:
         # Si hay un error con información sobre la línea y el valor
         error_msg = f"Syntax error at line {p.lineno}: Unexpected token '{p.value}'"
-    else:
-        # Si el error ocurre en el final del archivo
-        error_msg = "Syntax error at EOF: Unexpected end of input"
 
     # Guardar el error en la lista de errores
     S_Error.append(str(error_msg))
