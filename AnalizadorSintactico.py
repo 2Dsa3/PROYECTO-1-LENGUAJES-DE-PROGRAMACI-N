@@ -206,6 +206,49 @@ def p_key_value(p):
 #     '''statement : INPUT LPAREN expression RPAREN SEMICOLON'''
 #     p[0] = f"input({p[3]});"
 
+func_return_types = {}
+
+def p_func_declaration(p):
+    """func_declaration : type VARIABLE LPAREN params RPAREN LBRACE statements RBRACE"""
+    return_type = p[1]  
+    func_name = p[2]
+    statements = p[7]    
+    
+    
+    if func_name in func_return_types:
+        raise Exception(f"Error semántico: La función '{func_name}' ya está declarada.")
+    
+    func_return_types[func_name] = return_type
+
+    
+    for param in p[4]:
+        param_type = param[0]  
+        param_name = param[1]
+        
+        
+        if param_name in [p[1] for p in p[4]]:
+            raise Exception(f"Error semántico: El parámetro '{param_name}' ya está declarado.")
+
+    body_statements = p[6]
+
+    if return_type == 'void':
+        for statement in statements:
+            if statement[0] == 'return':
+                raise Exception(f"Error semántico: La función '{func_name}' de tipo 'void' no puede retornar un valor.")
+
+    p[0] = ('func_declaration', func_name, return_type, p[4], body_statements)
+
+
+
+def p_params(p):
+    """params : params COMMA type VARIABLE
+              | type VARIABLE"""
+    if len(p) == 4:
+        p[0] = [(p[1], p[2])]  
+    else:
+        p[0] = p[1] + [(p[3], p[4])]  
+
+
 
 # Manejo de errores
 S_Error = []
