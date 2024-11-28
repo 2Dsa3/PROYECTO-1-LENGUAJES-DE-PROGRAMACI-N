@@ -1,0 +1,8 @@
+Syntax-analyzer started at: 2024-11-27 23:14:29.461220
+
+Parsing result:
+('program', ('main', ('statements', ('statements', ('statements', ('statements', ('statements', ('statements', ('statements', ('statement', ('statement', ('var_declaration_with_value', 'int', 'x', 10))), ('statement', ('var_declaration_with_value', 'double', 'y', '3.14'))), ('statement', ('var_declaration_with_value', 'String', 'name', '"Dart"'))), ('statement', ('var_declaration_with_value', 'int', 'test', ('binop', ('binop', '(', ('binop', ('num_value', 4), '-', ('num_value', 3)), ')'), '+', ('num_value', 9))))), ('statement', ('var_declaration_with_value', 'var', 'bro', ('list', [1, 2, 3])))), ('statement', ('var_declaration_with_value', 'var', 'halogens', ('set', ["'fluorine'", "'chlorine'", "'bromine'", "'iodine'", "'astatine'"])))), ('statement', ('var_declaration_with_value', 'var', 'list', ('list', ["'Car'", "'Boat'", "'Plane'"])))), ('statement', ('var_declaration_with_value', 'var', 'nobleGases', ('map', [(2, "'helium'"), (10, "'neon'"), (18, "'argon'")]))))))
+
+Syntax-analyzer finished at: 2024-11-27 23:14:29.463221
+
+ERROR: Syntax error at line 72: Unexpected token ';'

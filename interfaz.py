@@ -33,7 +33,9 @@ def run_analysis():
     input_code = inputText.get("1.0", "end-1c")  # Obtener el texto ingresado
     consoleOutput.config(state=NORMAL)  # Habilitamos la edición temporalmente para escribir en la consola
     consoleOutput.delete(1.0, END)  # Limpiar la consola antes de mostrar los resultados
+
     consoleOutput.update()
+
     # Llamar las funciones
     result, syntax_error = analyze_syntactically(input_code)  # Aquí obtenemos el resultado y los errores sintácticos
     tokens, lexical_errors = analyze_lexically(input_code)  # Aquí obtenemos los errores léxicos
@@ -43,15 +45,18 @@ def run_analysis():
         consoleOutput.insert(END, "\n".join(lexical_errors) + "\n\n")
     else:
         consoleOutput.insert(END, "No se encontraron errores léxicos.\n\n")
-        consoleOutput.insert(END, str(tokens)+ "\n\n")
-    
+
+        consoleOutput.insert(END, tokens)
+        consoleOutput.insert(END,"\n\n")
     # Mostrar los errores sintácticos
     if syntax_error:
         consoleOutput.insert(END, "Hay Error Sintáctico:\n")
-        consoleOutput.insert(END, syntax_error + "\n\n")
+        consoleOutput.insert(END, syntax_error)
+        consoleOutput.insert(END, "\n\n")
     else:
         consoleOutput.insert(END, "No se encontraron errores sintácticos.\n\n")
         consoleOutput.insert(END, str(result)+ "\n\n")
+        
     consoleOutput.config(state=DISABLED)
     
 
