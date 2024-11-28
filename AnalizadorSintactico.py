@@ -38,15 +38,53 @@ def p_statement(p):
 
 # Reglas para var_declaration
 def p_var_declaration(p):
-    """var_declaration : type VARIABLE ASSIGN value
-                       | type VARIABLE ASSIGN bool_expression
-                       | type VARIABLE ASSIGN num_expression
-                       | type VARIABLE ASSIGN data_structure
-                       | type VARIABLE"""
+    """var_declaration : var_declaration_num |
+                        var_declaration_string | 
+                        var_declaration_bool"""
     if len(p) == 5:
         p[0] = ('var_declaration_with_value', p[1], p[2], p[4])
     else:
         p[0] = ('var_declaration_without_value', p[1], p[2])
+
+def p_var_declarationNumeric(p):
+    """var_declaration_num : type_num VARIABLE ASSIGN num_expression 
+                       | type_num VARIABLE"""
+    if len(p) == 5:
+        p[0] = ('var_declaration_with_value', p[1], p[2], p[4])
+    else:
+        p[0] = ('var_declaration_without_value', p[1], p[2])
+
+def p_var_declarationString(p):
+    """var_declaration_string : type_str VARIABLE ASSIGN str_expression
+                       | type_str VARIABLE"""
+    if len(p) == 5:
+        p[0] = ('var_declaration_with_value', p[1], p[2], p[4])
+    else:
+        p[0] = ('var_declaration_without_value', p[1], p[2])
+
+def p_var_declarationString(p):
+    """var_declaration_bool : type_bool VARIABLE ASSIGN bool_expression
+                       | type_bool VARIABLE"""
+    if len(p) == 5:
+        p[0] = ('var_declaration_with_value', p[1], p[2], p[4])
+    else:
+        p[0] = ('var_declaration_without_value', p[1], p[2])
+
+
+
+def p_type_num(p):
+    """type_num : DOUBLE
+            | INTEGER"""
+    p[0] = p[1]
+
+def p_type_String(p):
+    """type_str : STRING"""
+    p[0] = p[1]
+
+def p_type_Bool(p):
+    """type_bool : BOOL"""
+    p[0] = p[1]
+
 
 
 def p_type(p):
@@ -63,6 +101,8 @@ def p_type(p):
             | BOOL
             | VAR_TYPE"""
     p[0] = p[1]
+
+
 
 # Reglas para las expresiones
 def p_value(p):
@@ -86,6 +126,10 @@ def p_num_expression_binop(p):
 def p_num_expression_value(p):
     """num_expression : NUMBER
                       | FLOAT"""
+    p[0] = ('num_value', p[1])
+
+def p_str_expression_value(p):
+    """str_expression : STRING_LITERAL"""
     p[0] = ('num_value', p[1])
 
 # Reglas para expresiones booleanas
@@ -237,7 +281,6 @@ def p_func_declaration(p):
                 raise Exception(f"Error semántico: La función '{func_name}' de tipo 'void' no puede retornar un valor.")
 
     p[0] = ('func_declaration', func_name, return_type, p[4], body_statements)
-
 
 
 def p_params(p):
