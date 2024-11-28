@@ -208,8 +208,9 @@ def p_key_value(p):
 
 
 # Manejo de errores
-S_Error = ""
+S_Error = []
 def p_error(p):
+   
     if p:
         # Si hay un error con información sobre la línea y el valor
         error_msg = f"Syntax error at line {p.lineno}: Unexpected token '{p.value}'"
@@ -218,7 +219,7 @@ def p_error(p):
         error_msg = "Syntax error at EOF: Unexpected end of input"
 
     # Guardar el error en la lista de errores
-    S_Error=error_msg
+    S_Error.append(str(error_msg))
     log_error(error_msg)
 
 
