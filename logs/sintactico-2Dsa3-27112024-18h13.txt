@@ -1,0 +1,9 @@
+Syntax-analyzer started at: 2024-11-27 18:13:17.719742
+
+ERROR: Syntax error at line 2: Unexpected token '='
+Parsing result:
+None
+
+Syntax-analyzer finished at: 2024-11-27 18:13:17.721251
+
+ERROR: Syntax error at EOF: Unexpected end of input

@@ -1,0 +1,17 @@
+Syntax-analyzer started at: 2024-11-27 18:06:09.376996
+
+ERROR: Syntax error at line 2: Unexpected token '='
+
+Parsing result:
+None
+
+Syntax-analyzer finished at: 2024-11-27 18:06:09.377996
+
+ERROR: Syntax error in EOF
+
+ERROR: Syntax error in EOF
+
+ERROR: Syntax error in EOF
+
+ERROR: Syntax error in EOF
+

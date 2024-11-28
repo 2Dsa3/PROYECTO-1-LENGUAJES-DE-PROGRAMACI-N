@@ -1,0 +1,9 @@
+Syntax-analyzer started at: 2024-11-27 16:56:39.031845
+
+ERROR: Syntax error at line 26: Unexpected token '3'
+
+Parsing result:
+None
+
+Syntax-analyzer finished at: 2024-11-27 16:56:39.031845
+

@@ -1,0 +1,9 @@
+Syntax-analyzer started at: 2024-11-27 16:55:22.775869
+
+ERROR: Syntax error at line 26: Unexpected token 'inta'
+
+Parsing result:
+None
+
+Syntax-analyzer finished at: 2024-11-27 16:55:22.777913
+

@@ -1,0 +1,17 @@
+Syntax-analyzer started at: 2024-11-27 17:52:17.222991
+
+ERROR: Syntax error at line 2: Unexpected token '='
+
+Parsing result:
+None
+
+Syntax-analyzer finished at: 2024-11-27 17:52:17.224019
+
+ERROR: Syntax error at line 24: Unexpected token 'INT'
+
+ERROR: Syntax error at line 24: Unexpected token 'INT'
+
+ERROR: Syntax error at line 24: Unexpected token 'INT'
+
+ERROR: Syntax error at line 24: Unexpected token 'INT'
+

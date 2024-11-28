@@ -126,10 +126,14 @@ def t_NULLABLE(t):
 t_ignore = ' \t'
 
 # Manejo de errores
+# Lista para almacenar errores léxicos
+lexical_errors = []
 def t_error(t):
-    error_msg = f"Illegal character '{t.value[0]}'"
-    #log_error(error_msg)
-    t.lexer.skip(1)
+    # Captura cualquier carácter ilegal
+    error_message = f"Illegal character '{t.value[0]}' at line {t.lineno}"
+    lexical_errors.append(error_message)  # Guardar el error en la lista
+    t.lexer.skip(1)  # Ignorar el carácter no válido
+
 
 #Aporte Juan Severino
 ###
@@ -174,12 +178,25 @@ with open(log_filename, 'w') as log_file:
     log_file.write(f"Lex-analyzer started at: {datetime.datetime.now()}\n\n")
 
 # Analizar tokens
-lexer.input(data)
+'''lexer.input(data)
 while True:
     tok = lexer.token()
     if not tok:
         break
-    log_token(tok)
+    log_token(tok)'''
+#Funcion para analizar lexico
+def analyze_lexically(code):
+    lexer.input(code)  # Iniciar el lexer con el código de entrada
+    tokens = []  # Lista para almacenar los tokens válidos
+    
+    while True:
+        tok = lexer.token()  # Obtener el siguiente token
+        if not tok:
+            break  # No hay más tokens
+        
+        tokens.append(f"Token: {tok.type}, Value: {tok.value}, Line: {tok.lineno}")
+    
+    return tokens, lexical_errors  # Retornamos tanto los tokens como los errores'''
 
 with open(log_filename, 'a') as log_file:
     log_file.write(f"\nLex-analyzer finished at: {datetime.datetime.now()}\n")

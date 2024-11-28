@@ -1,5 +1,5 @@
 import ply.yacc as yacc
-from AnalizadorLexico import tokens, generate_log_filename
+from AnalizadorLexico import tokens, generate_log_filename, analyze_lexically
 import datetime
 
 #TODO: lo comentado
@@ -208,9 +208,19 @@ def p_key_value(p):
 
 
 # Manejo de errores
+S_Error = ""
 def p_error(p):
-    error_msg = f"Syntax error at line {p.lineno}: Unexpected token '{p.value}'\n" if p else "Syntax error in EOF\n"
+    if p:
+        # Si hay un error con información sobre la línea y el valor
+        error_msg = f"Syntax error at line {p.lineno}: Unexpected token '{p.value}'"
+    else:
+        # Si el error ocurre en el final del archivo
+        error_msg = "Syntax error at EOF: Unexpected end of input"
+
+    # Guardar el error en la lista de errores
+    S_Error=error_msg
     log_error(error_msg)
+
 
 
 def log_error(error_msg):
@@ -226,6 +236,15 @@ log_filename = generate_log_filename('sintactico')
 
 # Construcción del analizador
 parser = yacc.yacc()
+
+def parse_code(data):
+    return parser.parse(data)
+
+# Función para procesar el código y obtener los errores
+
+def analyze_syntactically(input_code):
+    result = parse_code(input_code)
+    return result, S_Error
 
 # Proceso de log
 with open(log_filename, 'w', encoding='utf-8') as log_file:
