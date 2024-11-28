@@ -186,6 +186,9 @@ while True:
     log_token(tok)'''
 #Funcion para analizar lexico
 def analyze_lexically(code):
+    lineno = 1 # Inicializar el número de línea
+    lexical_errors.clear()  
+
     lexer.input(code)  # Iniciar el lexer con el código de entrada
     tokens = []  # Lista para almacenar los tokens válidos
     
