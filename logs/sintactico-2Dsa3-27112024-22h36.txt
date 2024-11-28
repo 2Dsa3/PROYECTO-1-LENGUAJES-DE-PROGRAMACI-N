@@ -1,0 +1,8 @@
+Syntax-analyzer started at: 2024-11-27 22:36:50.950240
+
+ERROR: Syntax error at EOF: Unexpected end of input
+Parsing result:
+None
+
+Syntax-analyzer finished at: 2024-11-27 22:36:50.951239
+
