@@ -32,7 +32,8 @@ def p_statements(p):
 
 #  TODO Agregar aqui mas formas de statement
 def p_statement(p):
-    """statement : var_declaration SEMICOLON"""
+    """statement : var_declaration SEMICOLON 
+                    | func_declaration"""
     p[0] = ('statement', p[1])
 
 
@@ -48,6 +49,7 @@ def p_var_declaration(p):
 
 def p_var_declarationNumeric(p):
     """var_declaration_num : type_num VARIABLE ASSIGN num_expression 
+                        | type_num VARIABLE ASSIGN data_structure
                        | type_num VARIABLE"""
     if len(p) == 5:
         p[0] = ('var_declaration_with_value', p[1], p[2], p[4])
@@ -56,7 +58,8 @@ def p_var_declarationNumeric(p):
 
 def p_var_declarationString(p):
     """var_declaration_string : type_str VARIABLE ASSIGN str_expression
-                       | type_str VARIABLE"""
+                        | type_num VARIABLE ASSIGN data_structure
+                        | type_str VARIABLE"""
     if len(p) == 5:
         p[0] = ('var_declaration_with_value', p[1], p[2], p[4])
     else:
@@ -64,7 +67,8 @@ def p_var_declarationString(p):
 
 def p_var_declarationBool(p):
     """var_declaration_bool : type_bool VARIABLE ASSIGN bool_expression
-                       | type_bool VARIABLE"""
+                            | type_bool VARIABLE ASSIGN data_structure
+                            | type_bool VARIABLE"""
     if len(p) == 5:
         p[0] = ('var_declaration_with_value', p[1], p[2], p[4])
     else:
@@ -253,7 +257,11 @@ def p_key_value(p):
 func_return_types = {}
 
 def p_func_declaration(p):
-    """func_declaration : type VARIABLE LPAREN params RPAREN LBRACE statements RBRACE"""
+    """func_declaration : func_declaration_num
+                        | func_declaration_str"""
+
+def p_func_declaration_num(p):
+    """func_declaration_num : type_num VARIABLE LPAREN params RPAREN LBRACE statements return_statment_num RBRACE"""
     return_type = p[1]  
     func_name = p[2]
     statements = p[7]    
@@ -275,13 +283,86 @@ def p_func_declaration(p):
 
     body_statements = p[6]
 
-    if return_type == 'void':
-        for statement in statements:
-            if statement[0] == 'return':
-                raise Exception(f"Error semántico: La función '{func_name}' de tipo 'void' no puede retornar un valor.")
+    p[0] = ('func_declaration', func_name, return_type, p[4], body_statements)
+
+
+def p_func_declaration_str(p):
+    """func_declaration_str : type_str VARIABLE LPAREN params RPAREN LBRACE statements return_statment_string RBRACE"""
+    return_type = p[1]  
+    func_name = p[2]
+    statements = p[7]    
+    
+    
+    if func_name in func_return_types:
+        raise Exception(f"Error semántico: La función '{func_name}' ya está declarada.")
+    
+    func_return_types[func_name] = return_type
+
+    
+    for param in p[4]:
+        param_type = param[0]  
+        param_name = param[1]
+        
+        
+        if param_name in [p[1] for p in p[4]]:
+            raise Exception(f"Error semántico: El parámetro '{param_name}' ya está declarado.")
+
+    body_statements = p[6]
 
     p[0] = ('func_declaration', func_name, return_type, p[4], body_statements)
 
+
+
+def p_func_declaration_bool(p):
+    """func_declaration_bool : type_bool VARIABLE LPAREN params RPAREN LBRACE statements return_statment_bool RBRACE"""
+    return_type = p[1]  
+    func_name = p[2]
+    statements = p[7]    
+    
+    
+    if func_name in func_return_types:
+        raise Exception(f"Error semántico: La función '{func_name}' ya está declarada.")
+    
+    func_return_types[func_name] = return_type
+
+    
+    for param in p[4]:
+        param_type = param[0]  
+        param_name = param[1]
+        
+        
+        if param_name in [p[1] for p in p[4]]:
+            raise Exception(f"Error semántico: El parámetro '{param_name}' ya está declarado.")
+
+    body_statements = p[6]
+
+    p[0] = ('func_declaration', func_name, return_type, p[4], body_statements)
+
+
+def p_func_declaration_void(p):
+    """func_declaration_void : VOID VARIABLE LPAREN params RPAREN LBRACE statements RBRACE"""
+    return_type = p[1]  
+    func_name = p[2]
+    statements = p[7]    
+    
+    
+    if func_name in func_return_types:
+        raise Exception(f"Error semántico: La función '{func_name}' ya está declarada.")
+    
+    func_return_types[func_name] = return_type
+
+    
+    for param in p[4]:
+        param_type = param[0]  
+        param_name = param[1]
+        
+        
+        if param_name in [p[1] for p in p[4]]:
+            raise Exception(f"Error semántico: El parámetro '{param_name}' ya está declarado.")
+
+    body_statements = p[6]
+
+    p[0] = ('func_declaration', func_name, return_type, p[4], body_statements)
 
 
 def p_params(p):
@@ -290,7 +371,19 @@ def p_params(p):
     if len(p) == 4:
         p[0] = [(p[1], p[2])]  
     else:
-        p[0] = p[1] + [(p[3], p[4])]  
+        p[0] = p[1] + [(p[3], p[4])] 
+
+
+
+def p_return_statment_num(p):
+    """return_statment_num : RETURN num_expression SEMICOLON"""
+    
+def p_return_statment_string(p):
+    """return_statment_string : RETURN str_expression SEMICOLON"""
+
+def p_return_statment_bool(p):
+    """return_statment_bool : RETURN bool_expression SEMICOLON"""
+
 
 
 

@@ -1,0 +1,8 @@
+Syntax-analyzer started at: 2024-11-28 02:19:14.177121
+
+ERROR: Syntax error at line 3: Unexpected token ';'
+Parsing result:
+None
+
+Syntax-analyzer finished at: 2024-11-28 02:19:14.179116
+

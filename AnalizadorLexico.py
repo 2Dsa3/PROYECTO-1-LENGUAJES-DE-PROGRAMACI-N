@@ -16,7 +16,7 @@ reserved = {
     'true': 'TRUE', 'false': 'FALSE', 'void': 'VOID', 'bool': 'BOOL', 'String': 'STRING', 'dynamic': 'DYNAMIC',
     'int': 'INTEGER', 'double': 'DOUBLE',  # Añadimos 'double' para análisis léxico
     'List': 'LIST', 'Set': 'SET', 'Map': 'MAP', 'Stack': 'STACK', 'Queue': 'QUEUE', 'Object': 'OBJECT',
-    'Tree': 'TREE', 'Graph': 'GRAPH'  # Añadimos estructuras de datos
+    'Tree': 'TREE', 'Graph': 'GRAPH','return':"RETURN" # Añadimos estructuras de datos
 }
 
 

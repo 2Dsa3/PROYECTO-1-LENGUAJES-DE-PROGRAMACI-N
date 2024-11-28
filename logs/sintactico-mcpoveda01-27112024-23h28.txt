@@ -1,0 +1,9 @@
+Syntax-analyzer started at: 2024-11-27 23:28:26.174216
+
+ERROR: Syntax error at line 3: Unexpected token ';'
+Parsing result:
+None
+
+Syntax-analyzer finished at: 2024-11-27 23:28:26.177203
+
+ERROR: Syntax error at line 24: Unexpected token 'var'
