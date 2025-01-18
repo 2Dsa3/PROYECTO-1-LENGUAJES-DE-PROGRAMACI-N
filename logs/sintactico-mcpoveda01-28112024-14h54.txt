@@ -1,0 +1,15 @@
+Syntax-analyzer started at: 2024-11-28 14:54:37.007427
+
+ERROR: Syntax error at line 8: Unexpected token 'var'
+Parsing result:
+None
+
+Syntax-analyzer finished at: 2024-11-28 14:54:37.011392
+
+ERROR: Syntax error at line 53: Unexpected token '3'
+ERROR: Syntax error at line 73: Unexpected token ']'
+ERROR: Syntax error at line 85: Unexpected token '}'
+ERROR: Syntax error at line 97: Unexpected token '}'
+ERROR: Syntax error at line 110: Unexpected token '}'
+ERROR: Syntax error at line 123: Unexpected token ':'
+ERROR: Syntax error at line 138: Unexpected token '}'

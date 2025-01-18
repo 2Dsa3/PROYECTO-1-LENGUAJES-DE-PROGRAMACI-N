@@ -1,0 +1,10 @@
+Syntax-analyzer started at: 2024-11-28 13:34:18.696851
+
+ERROR: Syntax error at line 8: Unexpected token 'var'
+Parsing result:
+None
+
+Syntax-analyzer finished at: 2024-11-28 13:34:18.698847
+
+ERROR: Syntax error at line 25: Unexpected token 'string'
+ERROR: Syntax error at line 33: Unexpected token '('

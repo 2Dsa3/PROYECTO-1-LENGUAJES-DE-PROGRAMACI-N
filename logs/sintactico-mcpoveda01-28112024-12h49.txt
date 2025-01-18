@@ -1,0 +1,10 @@
+Syntax-analyzer started at: 2024-11-28 12:49:50.107341
+
+ERROR: Syntax error at line 3: Unexpected token '10'
+Parsing result:
+None
+
+Syntax-analyzer finished at: 2024-11-28 12:49:50.108305
+
+ERROR: Syntax error at line 24: Unexpected token 'int'
+ERROR: Syntax error at line 24: Unexpected token 'String'

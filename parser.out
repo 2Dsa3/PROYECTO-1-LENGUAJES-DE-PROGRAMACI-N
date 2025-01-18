@@ -1,0 +1,2967 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ABSTRACT
+    AS
+    BLOCK_COMMENT
+    CLASS
+    COMPOSED_ASSIGN
+    CONST
+    CONTINUE
+    DECREMENT
+    DO
+    DOC_COMMENT
+    DOT
+    DYNAMIC
+    ELSE
+    EXTENDS
+    FINAL
+    FOR
+    HASH
+    IMPLEMENTS
+    INCREMENT
+    INTEGER_DIVIDE
+    INTERFACE
+    IS
+    IS_NOT
+    LINE_COMMENT
+    NULL
+    NULL_ASSIGN
+    OBJECT
+    PRINT
+    PRIVATE
+    PROTECTED
+    PUBLIC
+    WHILE
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> main_func
+Rule 2     main_func -> VOID MAIN LPAREN RPAREN LBRACE statements
+Rule 3     statements -> statements statement
+Rule 4     statements -> statement
+Rule 5     statement -> var_declaration SEMICOLON
+Rule 6     statement -> func_declaration SEMICOLON
+Rule 7     statement -> control_structure
+Rule 8     basic_statement -> var_declaration SEMICOLON
+Rule 9     var_declaration -> var_declaration_num
+Rule 10    var_declaration -> var_declaration_string
+Rule 11    var_declaration -> var_declaration_bool
+Rule 12    var_declaration_num -> type_num VARIABLE ASSIGN num_expression
+Rule 13    var_declaration_num -> type_num VARIABLE ASSIGN data_structure
+Rule 14    var_declaration_num -> type_num VARIABLE
+Rule 15    var_declaration_string -> type_str VARIABLE ASSIGN str_expression
+Rule 16    var_declaration_string -> type_str VARIABLE ASSIGN data_structure
+Rule 17    var_declaration_string -> type_str VARIABLE
+Rule 18    var_declaration_bool -> type_bool VARIABLE ASSIGN bool_expression
+Rule 19    var_declaration_bool -> type_bool VARIABLE ASSIGN data_structure
+Rule 20    var_declaration_bool -> type_bool VARIABLE
+Rule 21    type_num -> DOUBLE
+Rule 22    type_num -> INTEGER
+Rule 23    type_str -> STRING
+Rule 24    type_bool -> BOOL
+Rule 25    type -> STRING
+Rule 26    type -> LIST
+Rule 27    type -> SET
+Rule 28    type -> MAP
+Rule 29    type -> STACK
+Rule 30    type -> QUEUE
+Rule 31    type -> TREE
+Rule 32    type -> GRAPH
+Rule 33    type -> DOUBLE
+Rule 34    type -> INTEGER
+Rule 35    type -> BOOL
+Rule 36    type -> VAR_TYPE
+Rule 37    value -> STRING_LITERAL
+Rule 38    value -> NUMBER
+Rule 39    value -> FLOAT
+Rule 40    value -> TRUE
+Rule 41    value -> FALSE
+Rule 42    num_expression -> num_expression PLUS num_expression
+Rule 43    num_expression -> num_expression MINUS num_expression
+Rule 44    num_expression -> num_expression TIMES num_expression
+Rule 45    num_expression -> num_expression DIVIDE num_expression
+Rule 46    num_expression -> num_expression MODULE num_expression
+Rule 47    num_expression -> LPAREN num_expression RPAREN
+Rule 48    str_expression -> STRING_LITERAL
+Rule 49    num_expression -> NUMBER
+Rule 50    num_expression -> FLOAT
+Rule 51    bool_expression -> bool_expression AND bool_expression
+Rule 52    bool_expression -> bool_expression OR bool_expression
+Rule 53    bool_expression -> NEGATION bool_expression
+Rule 54    bool_expression -> TRUE
+Rule 55    bool_expression -> FALSE
+Rule 56    data_structure -> list_structure
+Rule 57    data_structure -> map_structure
+Rule 58    data_structure -> set_structure
+Rule 59    list_structure -> LSQUARE elements RSQUARE
+Rule 60    map_structure -> LBRACE key_value_pairs RBRACE
+Rule 61    set_structure -> LBRACE elements RBRACE
+Rule 62    elements -> elements COMMA value
+Rule 63    elements -> value
+Rule 64    key_value_pairs -> key_value_pairs COMMA key_value
+Rule 65    key_value_pairs -> key_value
+Rule 66    key_value -> value COLON value
+Rule 67    control_structure -> if_structure
+Rule 68    control_structure -> switch_structure
+Rule 69    if_structure -> IF LPAREN condition RPAREN LBRACE basic_statement RBRACE
+Rule 70    switch_structure -> SWITCH LPAREN condition RPAREN LBRACE cases default RBRACE
+Rule 71    condition -> num_expression GREATER_THAN num_expression
+Rule 72    condition -> num_expression LESS_THAN num_expression
+Rule 73    condition -> num_expression GREATER_EQ num_expression
+Rule 74    condition -> num_expression LESS_EQ num_expression
+Rule 75    condition -> num_expression EQUALS num_expression
+Rule 76    condition -> num_expression NOT_EQUALS num_expression
+Rule 77    cases -> cases case
+Rule 78    cases -> case
+Rule 79    case -> CASE NUMBER COLON basic_statement BREAK SEMICOLON
+Rule 80    default -> DEFAULT COLON basic_statement SEMICOLON
+Rule 81    default -> empty
+Rule 82    empty -> <empty>
+Rule 83    func_declaration -> func_declaration_num SEMICOLON
+Rule 84    func_declaration -> func_declaration_str SEMICOLON
+Rule 85    func_declaration -> func_declaration_bool SEMICOLON
+Rule 86    func_declaration -> func_declaration_void SEMICOLON
+Rule 87    func_declaration_num -> type_num VARIABLE LPAREN params RPAREN LBRACE function_statment_num RBRACE
+Rule 88    func_declaration_str -> type_str VARIABLE LPAREN params RPAREN LBRACE function_statment_str RBRACE
+Rule 89    func_declaration_bool -> type_bool VARIABLE LPAREN params RPAREN LBRACE function_statment_bool RBRACE
+Rule 90    func_declaration_void -> VOID VARIABLE LPAREN params RPAREN LBRACE basic_statement RBRACE
+Rule 91    params -> params COMMA type VARIABLE
+Rule 92    params -> type VARIABLE
+Rule 93    function_statment_num -> return_statment_num
+Rule 94    function_statment_num -> basic_statement
+Rule 95    function_statment_str -> return_statment_string
+Rule 96    function_statment_str -> basic_statement
+Rule 97    function_statment_bool -> return_statment_bool
+Rule 98    function_statment_bool -> basic_statement
+Rule 99    return_statment_num -> RETURN num_expression SEMICOLON
+Rule 100   return_statment_string -> RETURN str_expression SEMICOLON
+Rule 101   return_statment_bool -> RETURN bool_expression SEMICOLON
+
+Terminals, with rules where they appear
+
+ABSTRACT             : 
+AND                  : 51
+AS                   : 
+ASSIGN               : 12 13 15 16 18 19
+BLOCK_COMMENT        : 
+BOOL                 : 24 35
+BREAK                : 79
+CASE                 : 79
+CLASS                : 
+COLON                : 66 79 80
+COMMA                : 62 64 91
+COMPOSED_ASSIGN      : 
+CONST                : 
+CONTINUE             : 
+DECREMENT            : 
+DEFAULT              : 80
+DIVIDE               : 45
+DO                   : 
+DOC_COMMENT          : 
+DOT                  : 
+DOUBLE               : 21 33
+DYNAMIC              : 
+ELSE                 : 
+EQUALS               : 75
+EXTENDS              : 
+FALSE                : 41 55
+FINAL                : 
+FLOAT                : 39 50
+FOR                  : 
+GRAPH                : 32
+GREATER_EQ           : 73
+GREATER_THAN         : 71
+HASH                 : 
+IF                   : 69
+IMPLEMENTS           : 
+INCREMENT            : 
+INTEGER              : 22 34
+INTEGER_DIVIDE       : 
+INTERFACE            : 
+IS                   : 
+IS_NOT               : 
+LBRACE               : 2 60 61 69 70 87 88 89 90
+LESS_EQ              : 74
+LESS_THAN            : 72
+LINE_COMMENT         : 
+LIST                 : 26
+LPAREN               : 2 47 69 70 87 88 89 90
+LSQUARE              : 59
+MAIN                 : 2
+MAP                  : 28
+MINUS                : 43
+MODULE               : 46
+NEGATION             : 53
+NOT_EQUALS           : 76
+NULL                 : 
+NULL_ASSIGN          : 
+NUMBER               : 38 49 79
+OBJECT               : 
+OR                   : 52
+PLUS                 : 42
+PRINT                : 
+PRIVATE              : 
+PROTECTED            : 
+PUBLIC               : 
+QUEUE                : 30
+RBRACE               : 60 61 69 70 87 88 89 90
+RETURN               : 99 100 101
+RPAREN               : 2 47 69 70 87 88 89 90
+RSQUARE              : 59
+SEMICOLON            : 5 6 8 79 80 83 84 85 86 99 100 101
+SET                  : 27
+STACK                : 29
+STRING               : 23 25
+STRING_LITERAL       : 37 48
+SWITCH               : 70
+TIMES                : 44
+TREE                 : 31
+TRUE                 : 40 54
+VARIABLE             : 12 13 14 15 16 17 18 19 20 87 88 89 90 91 92
+VAR_TYPE             : 36
+VOID                 : 2 90
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+basic_statement      : 69 79 80 90 94 96 98
+bool_expression      : 18 51 51 52 52 53 101
+case                 : 77 78
+cases                : 70 77
+condition            : 69 70
+control_structure    : 7
+data_structure       : 13 16 19
+default              : 70
+elements             : 59 61 62
+empty                : 81
+func_declaration     : 6
+func_declaration_bool : 85
+func_declaration_num : 83
+func_declaration_str : 84
+func_declaration_void : 86
+function_statment_bool : 89
+function_statment_num : 87
+function_statment_str : 88
+if_structure         : 67
+key_value            : 64 65
+key_value_pairs      : 60 64
+list_structure       : 56
+main_func            : 1
+map_structure        : 57
+num_expression       : 12 42 42 43 43 44 44 45 45 46 46 47 71 71 72 72 73 73 74 74 75 75 76 76 99
+params               : 87 88 89 90 91
+program              : 0
+return_statment_bool : 97
+return_statment_num  : 93
+return_statment_string : 95
+set_structure        : 58
+statement            : 3 4
+statements           : 2 3
+str_expression       : 15 100
+switch_structure     : 68
+type                 : 91 92
+type_bool            : 18 19 20 89
+type_num             : 12 13 14 87
+type_str             : 15 16 17 88
+value                : 62 63 66 66
+var_declaration      : 5 8
+var_declaration_bool : 11
+var_declaration_num  : 9
+var_declaration_string : 10
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . main_func
+    (2) main_func -> . VOID MAIN LPAREN RPAREN LBRACE statements
+
+    VOID            shift and go to state 3
+
+    program                        shift and go to state 1
+    main_func                      shift and go to state 2
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> main_func .
+
+    $end            reduce using rule 1 (program -> main_func .)
+
+
+state 3
+
+    (2) main_func -> VOID . MAIN LPAREN RPAREN LBRACE statements
+
+    MAIN            shift and go to state 4
+
+
+state 4
+
+    (2) main_func -> VOID MAIN . LPAREN RPAREN LBRACE statements
+
+    LPAREN          shift and go to state 5
+
+
+state 5
+
+    (2) main_func -> VOID MAIN LPAREN . RPAREN LBRACE statements
+
+    RPAREN          shift and go to state 6
+
+
+state 6
+
+    (2) main_func -> VOID MAIN LPAREN RPAREN . LBRACE statements
+
+    LBRACE          shift and go to state 7
+
+
+state 7
+
+    (2) main_func -> VOID MAIN LPAREN RPAREN LBRACE . statements
+    (3) statements -> . statements statement
+    (4) statements -> . statement
+    (5) statement -> . var_declaration SEMICOLON
+    (6) statement -> . func_declaration SEMICOLON
+    (7) statement -> . control_structure
+    (9) var_declaration -> . var_declaration_num
+    (10) var_declaration -> . var_declaration_string
+    (11) var_declaration -> . var_declaration_bool
+    (83) func_declaration -> . func_declaration_num SEMICOLON
+    (84) func_declaration -> . func_declaration_str SEMICOLON
+    (85) func_declaration -> . func_declaration_bool SEMICOLON
+    (86) func_declaration -> . func_declaration_void SEMICOLON
+    (67) control_structure -> . if_structure
+    (68) control_structure -> . switch_structure
+    (12) var_declaration_num -> . type_num VARIABLE ASSIGN num_expression
+    (13) var_declaration_num -> . type_num VARIABLE ASSIGN data_structure
+    (14) var_declaration_num -> . type_num VARIABLE
+    (15) var_declaration_string -> . type_str VARIABLE ASSIGN str_expression
+    (16) var_declaration_string -> . type_str VARIABLE ASSIGN data_structure
+    (17) var_declaration_string -> . type_str VARIABLE
+    (18) var_declaration_bool -> . type_bool VARIABLE ASSIGN bool_expression
+    (19) var_declaration_bool -> . type_bool VARIABLE ASSIGN data_structure
+    (20) var_declaration_bool -> . type_bool VARIABLE
+    (87) func_declaration_num -> . type_num VARIABLE LPAREN params RPAREN LBRACE function_statment_num RBRACE
+    (88) func_declaration_str -> . type_str VARIABLE LPAREN params RPAREN LBRACE function_statment_str RBRACE
+    (89) func_declaration_bool -> . type_bool VARIABLE LPAREN params RPAREN LBRACE function_statment_bool RBRACE
+    (90) func_declaration_void -> . VOID VARIABLE LPAREN params RPAREN LBRACE basic_statement RBRACE
+    (69) if_structure -> . IF LPAREN condition RPAREN LBRACE basic_statement RBRACE
+    (70) switch_structure -> . SWITCH LPAREN condition RPAREN LBRACE cases default RBRACE
+    (21) type_num -> . DOUBLE
+    (22) type_num -> . INTEGER
+    (23) type_str -> . STRING
+    (24) type_bool -> . BOOL
+
+    VOID            shift and go to state 8
+    IF              shift and go to state 26
+    SWITCH          shift and go to state 27
+    DOUBLE          shift and go to state 28
+    INTEGER         shift and go to state 29
+    STRING          shift and go to state 30
+    BOOL            shift and go to state 31
+
+    statements                     shift and go to state 9
+    statement                      shift and go to state 10
+    var_declaration                shift and go to state 11
+    func_declaration               shift and go to state 12
+    control_structure              shift and go to state 13
+    var_declaration_num            shift and go to state 14
+    var_declaration_string         shift and go to state 15
+    var_declaration_bool           shift and go to state 16
+    func_declaration_num           shift and go to state 17
+    func_declaration_str           shift and go to state 18
+    func_declaration_bool          shift and go to state 19
+    func_declaration_void          shift and go to state 20
+    if_structure                   shift and go to state 21
+    switch_structure               shift and go to state 22
+    type_num                       shift and go to state 23
+    type_str                       shift and go to state 24
+    type_bool                      shift and go to state 25
+
+state 8
+
+    (90) func_declaration_void -> VOID . VARIABLE LPAREN params RPAREN LBRACE basic_statement RBRACE
+
+    VARIABLE        shift and go to state 32
+
+
+state 9
+
+    (2) main_func -> VOID MAIN LPAREN RPAREN LBRACE statements .
+    (3) statements -> statements . statement
+    (5) statement -> . var_declaration SEMICOLON
+    (6) statement -> . func_declaration SEMICOLON
+    (7) statement -> . control_structure
+    (9) var_declaration -> . var_declaration_num
+    (10) var_declaration -> . var_declaration_string
+    (11) var_declaration -> . var_declaration_bool
+    (83) func_declaration -> . func_declaration_num SEMICOLON
+    (84) func_declaration -> . func_declaration_str SEMICOLON
+    (85) func_declaration -> . func_declaration_bool SEMICOLON
+    (86) func_declaration -> . func_declaration_void SEMICOLON
+    (67) control_structure -> . if_structure
+    (68) control_structure -> . switch_structure
+    (12) var_declaration_num -> . type_num VARIABLE ASSIGN num_expression
+    (13) var_declaration_num -> . type_num VARIABLE ASSIGN data_structure
+    (14) var_declaration_num -> . type_num VARIABLE
+    (15) var_declaration_string -> . type_str VARIABLE ASSIGN str_expression
+    (16) var_declaration_string -> . type_str VARIABLE ASSIGN data_structure
+    (17) var_declaration_string -> . type_str VARIABLE
+    (18) var_declaration_bool -> . type_bool VARIABLE ASSIGN bool_expression
+    (19) var_declaration_bool -> . type_bool VARIABLE ASSIGN data_structure
+    (20) var_declaration_bool -> . type_bool VARIABLE
+    (87) func_declaration_num -> . type_num VARIABLE LPAREN params RPAREN LBRACE function_statment_num RBRACE
+    (88) func_declaration_str -> . type_str VARIABLE LPAREN params RPAREN LBRACE function_statment_str RBRACE
+    (89) func_declaration_bool -> . type_bool VARIABLE LPAREN params RPAREN LBRACE function_statment_bool RBRACE
+    (90) func_declaration_void -> . VOID VARIABLE LPAREN params RPAREN LBRACE basic_statement RBRACE
+    (69) if_structure -> . IF LPAREN condition RPAREN LBRACE basic_statement RBRACE
+    (70) switch_structure -> . SWITCH LPAREN condition RPAREN LBRACE cases default RBRACE
+    (21) type_num -> . DOUBLE
+    (22) type_num -> . INTEGER
+    (23) type_str -> . STRING
+    (24) type_bool -> . BOOL
+
+    $end            reduce using rule 2 (main_func -> VOID MAIN LPAREN RPAREN LBRACE statements .)
+    VOID            shift and go to state 8
+    IF              shift and go to state 26
+    SWITCH          shift and go to state 27
+    DOUBLE          shift and go to state 28
+    INTEGER         shift and go to state 29
+    STRING          shift and go to state 30
+    BOOL            shift and go to state 31
+
+    statement                      shift and go to state 33
+    var_declaration                shift and go to state 11
+    func_declaration               shift and go to state 12
+    control_structure              shift and go to state 13
+    var_declaration_num            shift and go to state 14
+    var_declaration_string         shift and go to state 15
+    var_declaration_bool           shift and go to state 16
+    func_declaration_num           shift and go to state 17
+    func_declaration_str           shift and go to state 18
+    func_declaration_bool          shift and go to state 19
+    func_declaration_void          shift and go to state 20
+    if_structure                   shift and go to state 21
+    switch_structure               shift and go to state 22
+    type_num                       shift and go to state 23
+    type_str                       shift and go to state 24
+    type_bool                      shift and go to state 25
+
+state 10
+
+    (4) statements -> statement .
+
+    VOID            reduce using rule 4 (statements -> statement .)
+    IF              reduce using rule 4 (statements -> statement .)
+    SWITCH          reduce using rule 4 (statements -> statement .)
+    DOUBLE          reduce using rule 4 (statements -> statement .)
+    INTEGER         reduce using rule 4 (statements -> statement .)
+    STRING          reduce using rule 4 (statements -> statement .)
+    BOOL            reduce using rule 4 (statements -> statement .)
+    $end            reduce using rule 4 (statements -> statement .)
+
+
+state 11
+
+    (5) statement -> var_declaration . SEMICOLON
+
+    SEMICOLON       shift and go to state 34
+
+
+state 12
+
+    (6) statement -> func_declaration . SEMICOLON
+
+    SEMICOLON       shift and go to state 35
+
+
+state 13
+
+    (7) statement -> control_structure .
+
+    VOID            reduce using rule 7 (statement -> control_structure .)
+    IF              reduce using rule 7 (statement -> control_structure .)
+    SWITCH          reduce using rule 7 (statement -> control_structure .)
+    DOUBLE          reduce using rule 7 (statement -> control_structure .)
+    INTEGER         reduce using rule 7 (statement -> control_structure .)
+    STRING          reduce using rule 7 (statement -> control_structure .)
+    BOOL            reduce using rule 7 (statement -> control_structure .)
+    $end            reduce using rule 7 (statement -> control_structure .)
+
+
+state 14
+
+    (9) var_declaration -> var_declaration_num .
+
+    SEMICOLON       reduce using rule 9 (var_declaration -> var_declaration_num .)
+
+
+state 15
+
+    (10) var_declaration -> var_declaration_string .
+
+    SEMICOLON       reduce using rule 10 (var_declaration -> var_declaration_string .)
+
+
+state 16
+
+    (11) var_declaration -> var_declaration_bool .
+
+    SEMICOLON       reduce using rule 11 (var_declaration -> var_declaration_bool .)
+
+
+state 17
+
+    (83) func_declaration -> func_declaration_num . SEMICOLON
+
+    SEMICOLON       shift and go to state 36
+
+
+state 18
+
+    (84) func_declaration -> func_declaration_str . SEMICOLON
+
+    SEMICOLON       shift and go to state 37
+
+
+state 19
+
+    (85) func_declaration -> func_declaration_bool . SEMICOLON
+
+    SEMICOLON       shift and go to state 38
+
+
+state 20
+
+    (86) func_declaration -> func_declaration_void . SEMICOLON
+
+    SEMICOLON       shift and go to state 39
+
+
+state 21
+
+    (67) control_structure -> if_structure .
+
+    VOID            reduce using rule 67 (control_structure -> if_structure .)
+    IF              reduce using rule 67 (control_structure -> if_structure .)
+    SWITCH          reduce using rule 67 (control_structure -> if_structure .)
+    DOUBLE          reduce using rule 67 (control_structure -> if_structure .)
+    INTEGER         reduce using rule 67 (control_structure -> if_structure .)
+    STRING          reduce using rule 67 (control_structure -> if_structure .)
+    BOOL            reduce using rule 67 (control_structure -> if_structure .)
+    $end            reduce using rule 67 (control_structure -> if_structure .)
+
+
+state 22
+
+    (68) control_structure -> switch_structure .
+
+    VOID            reduce using rule 68 (control_structure -> switch_structure .)
+    IF              reduce using rule 68 (control_structure -> switch_structure .)
+    SWITCH          reduce using rule 68 (control_structure -> switch_structure .)
+    DOUBLE          reduce using rule 68 (control_structure -> switch_structure .)
+    INTEGER         reduce using rule 68 (control_structure -> switch_structure .)
+    STRING          reduce using rule 68 (control_structure -> switch_structure .)
+    BOOL            reduce using rule 68 (control_structure -> switch_structure .)
+    $end            reduce using rule 68 (control_structure -> switch_structure .)
+
+
+state 23
+
+    (12) var_declaration_num -> type_num . VARIABLE ASSIGN num_expression
+    (13) var_declaration_num -> type_num . VARIABLE ASSIGN data_structure
+    (14) var_declaration_num -> type_num . VARIABLE
+    (87) func_declaration_num -> type_num . VARIABLE LPAREN params RPAREN LBRACE function_statment_num RBRACE
+
+    VARIABLE        shift and go to state 40
+
+
+state 24
+
+    (15) var_declaration_string -> type_str . VARIABLE ASSIGN str_expression
+    (16) var_declaration_string -> type_str . VARIABLE ASSIGN data_structure
+    (17) var_declaration_string -> type_str . VARIABLE
+    (88) func_declaration_str -> type_str . VARIABLE LPAREN params RPAREN LBRACE function_statment_str RBRACE
+
+    VARIABLE        shift and go to state 41
+
+
+state 25
+
+    (18) var_declaration_bool -> type_bool . VARIABLE ASSIGN bool_expression
+    (19) var_declaration_bool -> type_bool . VARIABLE ASSIGN data_structure
+    (20) var_declaration_bool -> type_bool . VARIABLE
+    (89) func_declaration_bool -> type_bool . VARIABLE LPAREN params RPAREN LBRACE function_statment_bool RBRACE
+
+    VARIABLE        shift and go to state 42
+
+
+state 26
+
+    (69) if_structure -> IF . LPAREN condition RPAREN LBRACE basic_statement RBRACE
+
+    LPAREN          shift and go to state 43
+
+
+state 27
+
+    (70) switch_structure -> SWITCH . LPAREN condition RPAREN LBRACE cases default RBRACE
+
+    LPAREN          shift and go to state 44
+
+
+state 28
+
+    (21) type_num -> DOUBLE .
+
+    VARIABLE        reduce using rule 21 (type_num -> DOUBLE .)
+
+
+state 29
+
+    (22) type_num -> INTEGER .
+
+    VARIABLE        reduce using rule 22 (type_num -> INTEGER .)
+
+
+state 30
+
+    (23) type_str -> STRING .
+
+    VARIABLE        reduce using rule 23 (type_str -> STRING .)
+
+
+state 31
+
+    (24) type_bool -> BOOL .
+
+    VARIABLE        reduce using rule 24 (type_bool -> BOOL .)
+
+
+state 32
+
+    (90) func_declaration_void -> VOID VARIABLE . LPAREN params RPAREN LBRACE basic_statement RBRACE
+
+    LPAREN          shift and go to state 45
+
+
+state 33
+
+    (3) statements -> statements statement .
+
+    VOID            reduce using rule 3 (statements -> statements statement .)
+    IF              reduce using rule 3 (statements -> statements statement .)
+    SWITCH          reduce using rule 3 (statements -> statements statement .)
+    DOUBLE          reduce using rule 3 (statements -> statements statement .)
+    INTEGER         reduce using rule 3 (statements -> statements statement .)
+    STRING          reduce using rule 3 (statements -> statements statement .)
+    BOOL            reduce using rule 3 (statements -> statements statement .)
+    $end            reduce using rule 3 (statements -> statements statement .)
+
+
+state 34
+
+    (5) statement -> var_declaration SEMICOLON .
+
+    VOID            reduce using rule 5 (statement -> var_declaration SEMICOLON .)
+    IF              reduce using rule 5 (statement -> var_declaration SEMICOLON .)
+    SWITCH          reduce using rule 5 (statement -> var_declaration SEMICOLON .)
+    DOUBLE          reduce using rule 5 (statement -> var_declaration SEMICOLON .)
+    INTEGER         reduce using rule 5 (statement -> var_declaration SEMICOLON .)
+    STRING          reduce using rule 5 (statement -> var_declaration SEMICOLON .)
+    BOOL            reduce using rule 5 (statement -> var_declaration SEMICOLON .)
+    $end            reduce using rule 5 (statement -> var_declaration SEMICOLON .)
+
+
+state 35
+
+    (6) statement -> func_declaration SEMICOLON .
+
+    VOID            reduce using rule 6 (statement -> func_declaration SEMICOLON .)
+    IF              reduce using rule 6 (statement -> func_declaration SEMICOLON .)
+    SWITCH          reduce using rule 6 (statement -> func_declaration SEMICOLON .)
+    DOUBLE          reduce using rule 6 (statement -> func_declaration SEMICOLON .)
+    INTEGER         reduce using rule 6 (statement -> func_declaration SEMICOLON .)
+    STRING          reduce using rule 6 (statement -> func_declaration SEMICOLON .)
+    BOOL            reduce using rule 6 (statement -> func_declaration SEMICOLON .)
+    $end            reduce using rule 6 (statement -> func_declaration SEMICOLON .)
+
+
+state 36
+
+    (83) func_declaration -> func_declaration_num SEMICOLON .
+
+    SEMICOLON       reduce using rule 83 (func_declaration -> func_declaration_num SEMICOLON .)
+
+
+state 37
+
+    (84) func_declaration -> func_declaration_str SEMICOLON .
+
+    SEMICOLON       reduce using rule 84 (func_declaration -> func_declaration_str SEMICOLON .)
+
+
+state 38
+
+    (85) func_declaration -> func_declaration_bool SEMICOLON .
+
+    SEMICOLON       reduce using rule 85 (func_declaration -> func_declaration_bool SEMICOLON .)
+
+
+state 39
+
+    (86) func_declaration -> func_declaration_void SEMICOLON .
+
+    SEMICOLON       reduce using rule 86 (func_declaration -> func_declaration_void SEMICOLON .)
+
+
+state 40
+
+    (12) var_declaration_num -> type_num VARIABLE . ASSIGN num_expression
+    (13) var_declaration_num -> type_num VARIABLE . ASSIGN data_structure
+    (14) var_declaration_num -> type_num VARIABLE .
+    (87) func_declaration_num -> type_num VARIABLE . LPAREN params RPAREN LBRACE function_statment_num RBRACE
+
+    ASSIGN          shift and go to state 46
+    SEMICOLON       reduce using rule 14 (var_declaration_num -> type_num VARIABLE .)
+    LPAREN          shift and go to state 47
+
+
+state 41
+
+    (15) var_declaration_string -> type_str VARIABLE . ASSIGN str_expression
+    (16) var_declaration_string -> type_str VARIABLE . ASSIGN data_structure
+    (17) var_declaration_string -> type_str VARIABLE .
+    (88) func_declaration_str -> type_str VARIABLE . LPAREN params RPAREN LBRACE function_statment_str RBRACE
+
+    ASSIGN          shift and go to state 48
+    SEMICOLON       reduce using rule 17 (var_declaration_string -> type_str VARIABLE .)
+    LPAREN          shift and go to state 49
+
+
+state 42
+
+    (18) var_declaration_bool -> type_bool VARIABLE . ASSIGN bool_expression
+    (19) var_declaration_bool -> type_bool VARIABLE . ASSIGN data_structure
+    (20) var_declaration_bool -> type_bool VARIABLE .
+    (89) func_declaration_bool -> type_bool VARIABLE . LPAREN params RPAREN LBRACE function_statment_bool RBRACE
+
+    ASSIGN          shift and go to state 50
+    SEMICOLON       reduce using rule 20 (var_declaration_bool -> type_bool VARIABLE .)
+    LPAREN          shift and go to state 51
+
+
+state 43
+
+    (69) if_structure -> IF LPAREN . condition RPAREN LBRACE basic_statement RBRACE
+    (71) condition -> . num_expression GREATER_THAN num_expression
+    (72) condition -> . num_expression LESS_THAN num_expression
+    (73) condition -> . num_expression GREATER_EQ num_expression
+    (74) condition -> . num_expression LESS_EQ num_expression
+    (75) condition -> . num_expression EQUALS num_expression
+    (76) condition -> . num_expression NOT_EQUALS num_expression
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    condition                      shift and go to state 53
+    num_expression                 shift and go to state 54
+
+state 44
+
+    (70) switch_structure -> SWITCH LPAREN . condition RPAREN LBRACE cases default RBRACE
+    (71) condition -> . num_expression GREATER_THAN num_expression
+    (72) condition -> . num_expression LESS_THAN num_expression
+    (73) condition -> . num_expression GREATER_EQ num_expression
+    (74) condition -> . num_expression LESS_EQ num_expression
+    (75) condition -> . num_expression EQUALS num_expression
+    (76) condition -> . num_expression NOT_EQUALS num_expression
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    condition                      shift and go to state 57
+    num_expression                 shift and go to state 54
+
+state 45
+
+    (90) func_declaration_void -> VOID VARIABLE LPAREN . params RPAREN LBRACE basic_statement RBRACE
+    (91) params -> . params COMMA type VARIABLE
+    (92) params -> . type VARIABLE
+    (25) type -> . STRING
+    (26) type -> . LIST
+    (27) type -> . SET
+    (28) type -> . MAP
+    (29) type -> . STACK
+    (30) type -> . QUEUE
+    (31) type -> . TREE
+    (32) type -> . GRAPH
+    (33) type -> . DOUBLE
+    (34) type -> . INTEGER
+    (35) type -> . BOOL
+    (36) type -> . VAR_TYPE
+
+    STRING          shift and go to state 60
+    LIST            shift and go to state 61
+    SET             shift and go to state 62
+    MAP             shift and go to state 63
+    STACK           shift and go to state 64
+    QUEUE           shift and go to state 65
+    TREE            shift and go to state 66
+    GRAPH           shift and go to state 67
+    DOUBLE          shift and go to state 68
+    INTEGER         shift and go to state 69
+    BOOL            shift and go to state 70
+    VAR_TYPE        shift and go to state 71
+
+    params                         shift and go to state 58
+    type                           shift and go to state 59
+
+state 46
+
+    (12) var_declaration_num -> type_num VARIABLE ASSIGN . num_expression
+    (13) var_declaration_num -> type_num VARIABLE ASSIGN . data_structure
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+    (56) data_structure -> . list_structure
+    (57) data_structure -> . map_structure
+    (58) data_structure -> . set_structure
+    (59) list_structure -> . LSQUARE elements RSQUARE
+    (60) map_structure -> . LBRACE key_value_pairs RBRACE
+    (61) set_structure -> . LBRACE elements RBRACE
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+    LSQUARE         shift and go to state 77
+    LBRACE          shift and go to state 78
+
+    num_expression                 shift and go to state 72
+    data_structure                 shift and go to state 73
+    list_structure                 shift and go to state 74
+    map_structure                  shift and go to state 75
+    set_structure                  shift and go to state 76
+
+state 47
+
+    (87) func_declaration_num -> type_num VARIABLE LPAREN . params RPAREN LBRACE function_statment_num RBRACE
+    (91) params -> . params COMMA type VARIABLE
+    (92) params -> . type VARIABLE
+    (25) type -> . STRING
+    (26) type -> . LIST
+    (27) type -> . SET
+    (28) type -> . MAP
+    (29) type -> . STACK
+    (30) type -> . QUEUE
+    (31) type -> . TREE
+    (32) type -> . GRAPH
+    (33) type -> . DOUBLE
+    (34) type -> . INTEGER
+    (35) type -> . BOOL
+    (36) type -> . VAR_TYPE
+
+    STRING          shift and go to state 60
+    LIST            shift and go to state 61
+    SET             shift and go to state 62
+    MAP             shift and go to state 63
+    STACK           shift and go to state 64
+    QUEUE           shift and go to state 65
+    TREE            shift and go to state 66
+    GRAPH           shift and go to state 67
+    DOUBLE          shift and go to state 68
+    INTEGER         shift and go to state 69
+    BOOL            shift and go to state 70
+    VAR_TYPE        shift and go to state 71
+
+    params                         shift and go to state 79
+    type                           shift and go to state 59
+
+state 48
+
+    (15) var_declaration_string -> type_str VARIABLE ASSIGN . str_expression
+    (16) var_declaration_string -> type_str VARIABLE ASSIGN . data_structure
+    (48) str_expression -> . STRING_LITERAL
+    (56) data_structure -> . list_structure
+    (57) data_structure -> . map_structure
+    (58) data_structure -> . set_structure
+    (59) list_structure -> . LSQUARE elements RSQUARE
+    (60) map_structure -> . LBRACE key_value_pairs RBRACE
+    (61) set_structure -> . LBRACE elements RBRACE
+
+    STRING_LITERAL  shift and go to state 82
+    LSQUARE         shift and go to state 77
+    LBRACE          shift and go to state 78
+
+    str_expression                 shift and go to state 80
+    data_structure                 shift and go to state 81
+    list_structure                 shift and go to state 74
+    map_structure                  shift and go to state 75
+    set_structure                  shift and go to state 76
+
+state 49
+
+    (88) func_declaration_str -> type_str VARIABLE LPAREN . params RPAREN LBRACE function_statment_str RBRACE
+    (91) params -> . params COMMA type VARIABLE
+    (92) params -> . type VARIABLE
+    (25) type -> . STRING
+    (26) type -> . LIST
+    (27) type -> . SET
+    (28) type -> . MAP
+    (29) type -> . STACK
+    (30) type -> . QUEUE
+    (31) type -> . TREE
+    (32) type -> . GRAPH
+    (33) type -> . DOUBLE
+    (34) type -> . INTEGER
+    (35) type -> . BOOL
+    (36) type -> . VAR_TYPE
+
+    STRING          shift and go to state 60
+    LIST            shift and go to state 61
+    SET             shift and go to state 62
+    MAP             shift and go to state 63
+    STACK           shift and go to state 64
+    QUEUE           shift and go to state 65
+    TREE            shift and go to state 66
+    GRAPH           shift and go to state 67
+    DOUBLE          shift and go to state 68
+    INTEGER         shift and go to state 69
+    BOOL            shift and go to state 70
+    VAR_TYPE        shift and go to state 71
+
+    params                         shift and go to state 83
+    type                           shift and go to state 59
+
+state 50
+
+    (18) var_declaration_bool -> type_bool VARIABLE ASSIGN . bool_expression
+    (19) var_declaration_bool -> type_bool VARIABLE ASSIGN . data_structure
+    (51) bool_expression -> . bool_expression AND bool_expression
+    (52) bool_expression -> . bool_expression OR bool_expression
+    (53) bool_expression -> . NEGATION bool_expression
+    (54) bool_expression -> . TRUE
+    (55) bool_expression -> . FALSE
+    (56) data_structure -> . list_structure
+    (57) data_structure -> . map_structure
+    (58) data_structure -> . set_structure
+    (59) list_structure -> . LSQUARE elements RSQUARE
+    (60) map_structure -> . LBRACE key_value_pairs RBRACE
+    (61) set_structure -> . LBRACE elements RBRACE
+
+    NEGATION        shift and go to state 86
+    TRUE            shift and go to state 87
+    FALSE           shift and go to state 88
+    LSQUARE         shift and go to state 77
+    LBRACE          shift and go to state 78
+
+    bool_expression                shift and go to state 84
+    data_structure                 shift and go to state 85
+    list_structure                 shift and go to state 74
+    map_structure                  shift and go to state 75
+    set_structure                  shift and go to state 76
+
+state 51
+
+    (89) func_declaration_bool -> type_bool VARIABLE LPAREN . params RPAREN LBRACE function_statment_bool RBRACE
+    (91) params -> . params COMMA type VARIABLE
+    (92) params -> . type VARIABLE
+    (25) type -> . STRING
+    (26) type -> . LIST
+    (27) type -> . SET
+    (28) type -> . MAP
+    (29) type -> . STACK
+    (30) type -> . QUEUE
+    (31) type -> . TREE
+    (32) type -> . GRAPH
+    (33) type -> . DOUBLE
+    (34) type -> . INTEGER
+    (35) type -> . BOOL
+    (36) type -> . VAR_TYPE
+
+    STRING          shift and go to state 60
+    LIST            shift and go to state 61
+    SET             shift and go to state 62
+    MAP             shift and go to state 63
+    STACK           shift and go to state 64
+    QUEUE           shift and go to state 65
+    TREE            shift and go to state 66
+    GRAPH           shift and go to state 67
+    DOUBLE          shift and go to state 68
+    INTEGER         shift and go to state 69
+    BOOL            shift and go to state 70
+    VAR_TYPE        shift and go to state 71
+
+    params                         shift and go to state 89
+    type                           shift and go to state 59
+
+state 52
+
+    (47) num_expression -> LPAREN . num_expression RPAREN
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    num_expression                 shift and go to state 90
+
+state 53
+
+    (69) if_structure -> IF LPAREN condition . RPAREN LBRACE basic_statement RBRACE
+
+    RPAREN          shift and go to state 91
+
+
+state 54
+
+    (71) condition -> num_expression . GREATER_THAN num_expression
+    (72) condition -> num_expression . LESS_THAN num_expression
+    (73) condition -> num_expression . GREATER_EQ num_expression
+    (74) condition -> num_expression . LESS_EQ num_expression
+    (75) condition -> num_expression . EQUALS num_expression
+    (76) condition -> num_expression . NOT_EQUALS num_expression
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    GREATER_THAN    shift and go to state 92
+    LESS_THAN       shift and go to state 93
+    GREATER_EQ      shift and go to state 94
+    LESS_EQ         shift and go to state 95
+    EQUALS          shift and go to state 96
+    NOT_EQUALS      shift and go to state 97
+    PLUS            shift and go to state 98
+    MINUS           shift and go to state 99
+    TIMES           shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULE          shift and go to state 102
+
+
+state 55
+
+    (49) num_expression -> NUMBER .
+
+    GREATER_THAN    reduce using rule 49 (num_expression -> NUMBER .)
+    LESS_THAN       reduce using rule 49 (num_expression -> NUMBER .)
+    GREATER_EQ      reduce using rule 49 (num_expression -> NUMBER .)
+    LESS_EQ         reduce using rule 49 (num_expression -> NUMBER .)
+    EQUALS          reduce using rule 49 (num_expression -> NUMBER .)
+    NOT_EQUALS      reduce using rule 49 (num_expression -> NUMBER .)
+    PLUS            reduce using rule 49 (num_expression -> NUMBER .)
+    MINUS           reduce using rule 49 (num_expression -> NUMBER .)
+    TIMES           reduce using rule 49 (num_expression -> NUMBER .)
+    DIVIDE          reduce using rule 49 (num_expression -> NUMBER .)
+    MODULE          reduce using rule 49 (num_expression -> NUMBER .)
+    SEMICOLON       reduce using rule 49 (num_expression -> NUMBER .)
+    RPAREN          reduce using rule 49 (num_expression -> NUMBER .)
+
+
+state 56
+
+    (50) num_expression -> FLOAT .
+
+    GREATER_THAN    reduce using rule 50 (num_expression -> FLOAT .)
+    LESS_THAN       reduce using rule 50 (num_expression -> FLOAT .)
+    GREATER_EQ      reduce using rule 50 (num_expression -> FLOAT .)
+    LESS_EQ         reduce using rule 50 (num_expression -> FLOAT .)
+    EQUALS          reduce using rule 50 (num_expression -> FLOAT .)
+    NOT_EQUALS      reduce using rule 50 (num_expression -> FLOAT .)
+    PLUS            reduce using rule 50 (num_expression -> FLOAT .)
+    MINUS           reduce using rule 50 (num_expression -> FLOAT .)
+    TIMES           reduce using rule 50 (num_expression -> FLOAT .)
+    DIVIDE          reduce using rule 50 (num_expression -> FLOAT .)
+    MODULE          reduce using rule 50 (num_expression -> FLOAT .)
+    SEMICOLON       reduce using rule 50 (num_expression -> FLOAT .)
+    RPAREN          reduce using rule 50 (num_expression -> FLOAT .)
+
+
+state 57
+
+    (70) switch_structure -> SWITCH LPAREN condition . RPAREN LBRACE cases default RBRACE
+
+    RPAREN          shift and go to state 103
+
+
+state 58
+
+    (90) func_declaration_void -> VOID VARIABLE LPAREN params . RPAREN LBRACE basic_statement RBRACE
+    (91) params -> params . COMMA type VARIABLE
+
+    RPAREN          shift and go to state 104
+    COMMA           shift and go to state 105
+
+
+state 59
+
+    (92) params -> type . VARIABLE
+
+    VARIABLE        shift and go to state 106
+
+
+state 60
+
+    (25) type -> STRING .
+
+    VARIABLE        reduce using rule 25 (type -> STRING .)
+
+
+state 61
+
+    (26) type -> LIST .
+
+    VARIABLE        reduce using rule 26 (type -> LIST .)
+
+
+state 62
+
+    (27) type -> SET .
+
+    VARIABLE        reduce using rule 27 (type -> SET .)
+
+
+state 63
+
+    (28) type -> MAP .
+
+    VARIABLE        reduce using rule 28 (type -> MAP .)
+
+
+state 64
+
+    (29) type -> STACK .
+
+    VARIABLE        reduce using rule 29 (type -> STACK .)
+
+
+state 65
+
+    (30) type -> QUEUE .
+
+    VARIABLE        reduce using rule 30 (type -> QUEUE .)
+
+
+state 66
+
+    (31) type -> TREE .
+
+    VARIABLE        reduce using rule 31 (type -> TREE .)
+
+
+state 67
+
+    (32) type -> GRAPH .
+
+    VARIABLE        reduce using rule 32 (type -> GRAPH .)
+
+
+state 68
+
+    (33) type -> DOUBLE .
+
+    VARIABLE        reduce using rule 33 (type -> DOUBLE .)
+
+
+state 69
+
+    (34) type -> INTEGER .
+
+    VARIABLE        reduce using rule 34 (type -> INTEGER .)
+
+
+state 70
+
+    (35) type -> BOOL .
+
+    VARIABLE        reduce using rule 35 (type -> BOOL .)
+
+
+state 71
+
+    (36) type -> VAR_TYPE .
+
+    VARIABLE        reduce using rule 36 (type -> VAR_TYPE .)
+
+
+state 72
+
+    (12) var_declaration_num -> type_num VARIABLE ASSIGN num_expression .
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    SEMICOLON       reduce using rule 12 (var_declaration_num -> type_num VARIABLE ASSIGN num_expression .)
+    PLUS            shift and go to state 98
+    MINUS           shift and go to state 99
+    TIMES           shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULE          shift and go to state 102
+
+
+state 73
+
+    (13) var_declaration_num -> type_num VARIABLE ASSIGN data_structure .
+
+    SEMICOLON       reduce using rule 13 (var_declaration_num -> type_num VARIABLE ASSIGN data_structure .)
+
+
+state 74
+
+    (56) data_structure -> list_structure .
+
+    SEMICOLON       reduce using rule 56 (data_structure -> list_structure .)
+
+
+state 75
+
+    (57) data_structure -> map_structure .
+
+    SEMICOLON       reduce using rule 57 (data_structure -> map_structure .)
+
+
+state 76
+
+    (58) data_structure -> set_structure .
+
+    SEMICOLON       reduce using rule 58 (data_structure -> set_structure .)
+
+
+state 77
+
+    (59) list_structure -> LSQUARE . elements RSQUARE
+    (62) elements -> . elements COMMA value
+    (63) elements -> . value
+    (37) value -> . STRING_LITERAL
+    (38) value -> . NUMBER
+    (39) value -> . FLOAT
+    (40) value -> . TRUE
+    (41) value -> . FALSE
+
+    STRING_LITERAL  shift and go to state 109
+    NUMBER          shift and go to state 110
+    FLOAT           shift and go to state 111
+    TRUE            shift and go to state 112
+    FALSE           shift and go to state 113
+
+    elements                       shift and go to state 107
+    value                          shift and go to state 108
+
+state 78
+
+    (60) map_structure -> LBRACE . key_value_pairs RBRACE
+    (61) set_structure -> LBRACE . elements RBRACE
+    (64) key_value_pairs -> . key_value_pairs COMMA key_value
+    (65) key_value_pairs -> . key_value
+    (62) elements -> . elements COMMA value
+    (63) elements -> . value
+    (66) key_value -> . value COLON value
+    (37) value -> . STRING_LITERAL
+    (38) value -> . NUMBER
+    (39) value -> . FLOAT
+    (40) value -> . TRUE
+    (41) value -> . FALSE
+
+    STRING_LITERAL  shift and go to state 109
+    NUMBER          shift and go to state 110
+    FLOAT           shift and go to state 111
+    TRUE            shift and go to state 112
+    FALSE           shift and go to state 113
+
+    key_value_pairs                shift and go to state 114
+    elements                       shift and go to state 115
+    key_value                      shift and go to state 116
+    value                          shift and go to state 117
+
+state 79
+
+    (87) func_declaration_num -> type_num VARIABLE LPAREN params . RPAREN LBRACE function_statment_num RBRACE
+    (91) params -> params . COMMA type VARIABLE
+
+    RPAREN          shift and go to state 118
+    COMMA           shift and go to state 105
+
+
+state 80
+
+    (15) var_declaration_string -> type_str VARIABLE ASSIGN str_expression .
+
+    SEMICOLON       reduce using rule 15 (var_declaration_string -> type_str VARIABLE ASSIGN str_expression .)
+
+
+state 81
+
+    (16) var_declaration_string -> type_str VARIABLE ASSIGN data_structure .
+
+    SEMICOLON       reduce using rule 16 (var_declaration_string -> type_str VARIABLE ASSIGN data_structure .)
+
+
+state 82
+
+    (48) str_expression -> STRING_LITERAL .
+
+    SEMICOLON       reduce using rule 48 (str_expression -> STRING_LITERAL .)
+
+
+state 83
+
+    (88) func_declaration_str -> type_str VARIABLE LPAREN params . RPAREN LBRACE function_statment_str RBRACE
+    (91) params -> params . COMMA type VARIABLE
+
+    RPAREN          shift and go to state 119
+    COMMA           shift and go to state 105
+
+
+state 84
+
+    (18) var_declaration_bool -> type_bool VARIABLE ASSIGN bool_expression .
+    (51) bool_expression -> bool_expression . AND bool_expression
+    (52) bool_expression -> bool_expression . OR bool_expression
+
+    SEMICOLON       reduce using rule 18 (var_declaration_bool -> type_bool VARIABLE ASSIGN bool_expression .)
+    AND             shift and go to state 120
+    OR              shift and go to state 121
+
+
+state 85
+
+    (19) var_declaration_bool -> type_bool VARIABLE ASSIGN data_structure .
+
+    SEMICOLON       reduce using rule 19 (var_declaration_bool -> type_bool VARIABLE ASSIGN data_structure .)
+
+
+state 86
+
+    (53) bool_expression -> NEGATION . bool_expression
+    (51) bool_expression -> . bool_expression AND bool_expression
+    (52) bool_expression -> . bool_expression OR bool_expression
+    (53) bool_expression -> . NEGATION bool_expression
+    (54) bool_expression -> . TRUE
+    (55) bool_expression -> . FALSE
+
+    NEGATION        shift and go to state 86
+    TRUE            shift and go to state 87
+    FALSE           shift and go to state 88
+
+    bool_expression                shift and go to state 122
+
+state 87
+
+    (54) bool_expression -> TRUE .
+
+    AND             reduce using rule 54 (bool_expression -> TRUE .)
+    OR              reduce using rule 54 (bool_expression -> TRUE .)
+    SEMICOLON       reduce using rule 54 (bool_expression -> TRUE .)
+
+
+state 88
+
+    (55) bool_expression -> FALSE .
+
+    AND             reduce using rule 55 (bool_expression -> FALSE .)
+    OR              reduce using rule 55 (bool_expression -> FALSE .)
+    SEMICOLON       reduce using rule 55 (bool_expression -> FALSE .)
+
+
+state 89
+
+    (89) func_declaration_bool -> type_bool VARIABLE LPAREN params . RPAREN LBRACE function_statment_bool RBRACE
+    (91) params -> params . COMMA type VARIABLE
+
+    RPAREN          shift and go to state 123
+    COMMA           shift and go to state 105
+
+
+state 90
+
+    (47) num_expression -> LPAREN num_expression . RPAREN
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    RPAREN          shift and go to state 124
+    PLUS            shift and go to state 98
+    MINUS           shift and go to state 99
+    TIMES           shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULE          shift and go to state 102
+
+
+state 91
+
+    (69) if_structure -> IF LPAREN condition RPAREN . LBRACE basic_statement RBRACE
+
+    LBRACE          shift and go to state 125
+
+
+state 92
+
+    (71) condition -> num_expression GREATER_THAN . num_expression
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    num_expression                 shift and go to state 126
+
+state 93
+
+    (72) condition -> num_expression LESS_THAN . num_expression
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    num_expression                 shift and go to state 127
+
+state 94
+
+    (73) condition -> num_expression GREATER_EQ . num_expression
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    num_expression                 shift and go to state 128
+
+state 95
+
+    (74) condition -> num_expression LESS_EQ . num_expression
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    num_expression                 shift and go to state 129
+
+state 96
+
+    (75) condition -> num_expression EQUALS . num_expression
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    num_expression                 shift and go to state 130
+
+state 97
+
+    (76) condition -> num_expression NOT_EQUALS . num_expression
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    num_expression                 shift and go to state 131
+
+state 98
+
+    (42) num_expression -> num_expression PLUS . num_expression
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    num_expression                 shift and go to state 132
+
+state 99
+
+    (43) num_expression -> num_expression MINUS . num_expression
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    num_expression                 shift and go to state 133
+
+state 100
+
+    (44) num_expression -> num_expression TIMES . num_expression
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    num_expression                 shift and go to state 134
+
+state 101
+
+    (45) num_expression -> num_expression DIVIDE . num_expression
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    num_expression                 shift and go to state 135
+
+state 102
+
+    (46) num_expression -> num_expression MODULE . num_expression
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    num_expression                 shift and go to state 136
+
+state 103
+
+    (70) switch_structure -> SWITCH LPAREN condition RPAREN . LBRACE cases default RBRACE
+
+    LBRACE          shift and go to state 137
+
+
+state 104
+
+    (90) func_declaration_void -> VOID VARIABLE LPAREN params RPAREN . LBRACE basic_statement RBRACE
+
+    LBRACE          shift and go to state 138
+
+
+state 105
+
+    (91) params -> params COMMA . type VARIABLE
+    (25) type -> . STRING
+    (26) type -> . LIST
+    (27) type -> . SET
+    (28) type -> . MAP
+    (29) type -> . STACK
+    (30) type -> . QUEUE
+    (31) type -> . TREE
+    (32) type -> . GRAPH
+    (33) type -> . DOUBLE
+    (34) type -> . INTEGER
+    (35) type -> . BOOL
+    (36) type -> . VAR_TYPE
+
+    STRING          shift and go to state 60
+    LIST            shift and go to state 61
+    SET             shift and go to state 62
+    MAP             shift and go to state 63
+    STACK           shift and go to state 64
+    QUEUE           shift and go to state 65
+    TREE            shift and go to state 66
+    GRAPH           shift and go to state 67
+    DOUBLE          shift and go to state 68
+    INTEGER         shift and go to state 69
+    BOOL            shift and go to state 70
+    VAR_TYPE        shift and go to state 71
+
+    type                           shift and go to state 139
+
+state 106
+
+    (92) params -> type VARIABLE .
+
+    RPAREN          reduce using rule 92 (params -> type VARIABLE .)
+    COMMA           reduce using rule 92 (params -> type VARIABLE .)
+
+
+state 107
+
+    (59) list_structure -> LSQUARE elements . RSQUARE
+    (62) elements -> elements . COMMA value
+
+    RSQUARE         shift and go to state 140
+    COMMA           shift and go to state 141
+
+
+state 108
+
+    (63) elements -> value .
+
+    RSQUARE         reduce using rule 63 (elements -> value .)
+    COMMA           reduce using rule 63 (elements -> value .)
+
+
+state 109
+
+    (37) value -> STRING_LITERAL .
+
+    RSQUARE         reduce using rule 37 (value -> STRING_LITERAL .)
+    COMMA           reduce using rule 37 (value -> STRING_LITERAL .)
+    COLON           reduce using rule 37 (value -> STRING_LITERAL .)
+    RBRACE          reduce using rule 37 (value -> STRING_LITERAL .)
+
+
+state 110
+
+    (38) value -> NUMBER .
+
+    RSQUARE         reduce using rule 38 (value -> NUMBER .)
+    COMMA           reduce using rule 38 (value -> NUMBER .)
+    COLON           reduce using rule 38 (value -> NUMBER .)
+    RBRACE          reduce using rule 38 (value -> NUMBER .)
+
+
+state 111
+
+    (39) value -> FLOAT .
+
+    RSQUARE         reduce using rule 39 (value -> FLOAT .)
+    COMMA           reduce using rule 39 (value -> FLOAT .)
+    COLON           reduce using rule 39 (value -> FLOAT .)
+    RBRACE          reduce using rule 39 (value -> FLOAT .)
+
+
+state 112
+
+    (40) value -> TRUE .
+
+    RSQUARE         reduce using rule 40 (value -> TRUE .)
+    COMMA           reduce using rule 40 (value -> TRUE .)
+    COLON           reduce using rule 40 (value -> TRUE .)
+    RBRACE          reduce using rule 40 (value -> TRUE .)
+
+
+state 113
+
+    (41) value -> FALSE .
+
+    RSQUARE         reduce using rule 41 (value -> FALSE .)
+    COMMA           reduce using rule 41 (value -> FALSE .)
+    COLON           reduce using rule 41 (value -> FALSE .)
+    RBRACE          reduce using rule 41 (value -> FALSE .)
+
+
+state 114
+
+    (60) map_structure -> LBRACE key_value_pairs . RBRACE
+    (64) key_value_pairs -> key_value_pairs . COMMA key_value
+
+    RBRACE          shift and go to state 142
+    COMMA           shift and go to state 143
+
+
+state 115
+
+    (61) set_structure -> LBRACE elements . RBRACE
+    (62) elements -> elements . COMMA value
+
+    RBRACE          shift and go to state 144
+    COMMA           shift and go to state 141
+
+
+state 116
+
+    (65) key_value_pairs -> key_value .
+
+    RBRACE          reduce using rule 65 (key_value_pairs -> key_value .)
+    COMMA           reduce using rule 65 (key_value_pairs -> key_value .)
+
+
+state 117
+
+    (63) elements -> value .
+    (66) key_value -> value . COLON value
+
+    RBRACE          reduce using rule 63 (elements -> value .)
+    COMMA           reduce using rule 63 (elements -> value .)
+    COLON           shift and go to state 145
+
+
+state 118
+
+    (87) func_declaration_num -> type_num VARIABLE LPAREN params RPAREN . LBRACE function_statment_num RBRACE
+
+    LBRACE          shift and go to state 146
+
+
+state 119
+
+    (88) func_declaration_str -> type_str VARIABLE LPAREN params RPAREN . LBRACE function_statment_str RBRACE
+
+    LBRACE          shift and go to state 147
+
+
+state 120
+
+    (51) bool_expression -> bool_expression AND . bool_expression
+    (51) bool_expression -> . bool_expression AND bool_expression
+    (52) bool_expression -> . bool_expression OR bool_expression
+    (53) bool_expression -> . NEGATION bool_expression
+    (54) bool_expression -> . TRUE
+    (55) bool_expression -> . FALSE
+
+    NEGATION        shift and go to state 86
+    TRUE            shift and go to state 87
+    FALSE           shift and go to state 88
+
+    bool_expression                shift and go to state 148
+
+state 121
+
+    (52) bool_expression -> bool_expression OR . bool_expression
+    (51) bool_expression -> . bool_expression AND bool_expression
+    (52) bool_expression -> . bool_expression OR bool_expression
+    (53) bool_expression -> . NEGATION bool_expression
+    (54) bool_expression -> . TRUE
+    (55) bool_expression -> . FALSE
+
+    NEGATION        shift and go to state 86
+    TRUE            shift and go to state 87
+    FALSE           shift and go to state 88
+
+    bool_expression                shift and go to state 149
+
+state 122
+
+    (53) bool_expression -> NEGATION bool_expression .
+    (51) bool_expression -> bool_expression . AND bool_expression
+    (52) bool_expression -> bool_expression . OR bool_expression
+
+    AND             reduce using rule 53 (bool_expression -> NEGATION bool_expression .)
+    OR              reduce using rule 53 (bool_expression -> NEGATION bool_expression .)
+    SEMICOLON       reduce using rule 53 (bool_expression -> NEGATION bool_expression .)
+
+  ! AND             [ shift and go to state 120 ]
+  ! OR              [ shift and go to state 121 ]
+
+
+state 123
+
+    (89) func_declaration_bool -> type_bool VARIABLE LPAREN params RPAREN . LBRACE function_statment_bool RBRACE
+
+    LBRACE          shift and go to state 150
+
+
+state 124
+
+    (47) num_expression -> LPAREN num_expression RPAREN .
+
+    GREATER_THAN    reduce using rule 47 (num_expression -> LPAREN num_expression RPAREN .)
+    LESS_THAN       reduce using rule 47 (num_expression -> LPAREN num_expression RPAREN .)
+    GREATER_EQ      reduce using rule 47 (num_expression -> LPAREN num_expression RPAREN .)
+    LESS_EQ         reduce using rule 47 (num_expression -> LPAREN num_expression RPAREN .)
+    EQUALS          reduce using rule 47 (num_expression -> LPAREN num_expression RPAREN .)
+    NOT_EQUALS      reduce using rule 47 (num_expression -> LPAREN num_expression RPAREN .)
+    PLUS            reduce using rule 47 (num_expression -> LPAREN num_expression RPAREN .)
+    MINUS           reduce using rule 47 (num_expression -> LPAREN num_expression RPAREN .)
+    TIMES           reduce using rule 47 (num_expression -> LPAREN num_expression RPAREN .)
+    DIVIDE          reduce using rule 47 (num_expression -> LPAREN num_expression RPAREN .)
+    MODULE          reduce using rule 47 (num_expression -> LPAREN num_expression RPAREN .)
+    SEMICOLON       reduce using rule 47 (num_expression -> LPAREN num_expression RPAREN .)
+    RPAREN          reduce using rule 47 (num_expression -> LPAREN num_expression RPAREN .)
+
+
+state 125
+
+    (69) if_structure -> IF LPAREN condition RPAREN LBRACE . basic_statement RBRACE
+    (8) basic_statement -> . var_declaration SEMICOLON
+    (9) var_declaration -> . var_declaration_num
+    (10) var_declaration -> . var_declaration_string
+    (11) var_declaration -> . var_declaration_bool
+    (12) var_declaration_num -> . type_num VARIABLE ASSIGN num_expression
+    (13) var_declaration_num -> . type_num VARIABLE ASSIGN data_structure
+    (14) var_declaration_num -> . type_num VARIABLE
+    (15) var_declaration_string -> . type_str VARIABLE ASSIGN str_expression
+    (16) var_declaration_string -> . type_str VARIABLE ASSIGN data_structure
+    (17) var_declaration_string -> . type_str VARIABLE
+    (18) var_declaration_bool -> . type_bool VARIABLE ASSIGN bool_expression
+    (19) var_declaration_bool -> . type_bool VARIABLE ASSIGN data_structure
+    (20) var_declaration_bool -> . type_bool VARIABLE
+    (21) type_num -> . DOUBLE
+    (22) type_num -> . INTEGER
+    (23) type_str -> . STRING
+    (24) type_bool -> . BOOL
+
+    DOUBLE          shift and go to state 28
+    INTEGER         shift and go to state 29
+    STRING          shift and go to state 30
+    BOOL            shift and go to state 31
+
+    basic_statement                shift and go to state 151
+    var_declaration                shift and go to state 152
+    var_declaration_num            shift and go to state 14
+    var_declaration_string         shift and go to state 15
+    var_declaration_bool           shift and go to state 16
+    type_num                       shift and go to state 153
+    type_str                       shift and go to state 154
+    type_bool                      shift and go to state 155
+
+state 126
+
+    (71) condition -> num_expression GREATER_THAN num_expression .
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    RPAREN          reduce using rule 71 (condition -> num_expression GREATER_THAN num_expression .)
+    PLUS            shift and go to state 98
+    MINUS           shift and go to state 99
+    TIMES           shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULE          shift and go to state 102
+
+
+state 127
+
+    (72) condition -> num_expression LESS_THAN num_expression .
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    RPAREN          reduce using rule 72 (condition -> num_expression LESS_THAN num_expression .)
+    PLUS            shift and go to state 98
+    MINUS           shift and go to state 99
+    TIMES           shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULE          shift and go to state 102
+
+
+state 128
+
+    (73) condition -> num_expression GREATER_EQ num_expression .
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    RPAREN          reduce using rule 73 (condition -> num_expression GREATER_EQ num_expression .)
+    PLUS            shift and go to state 98
+    MINUS           shift and go to state 99
+    TIMES           shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULE          shift and go to state 102
+
+
+state 129
+
+    (74) condition -> num_expression LESS_EQ num_expression .
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    RPAREN          reduce using rule 74 (condition -> num_expression LESS_EQ num_expression .)
+    PLUS            shift and go to state 98
+    MINUS           shift and go to state 99
+    TIMES           shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULE          shift and go to state 102
+
+
+state 130
+
+    (75) condition -> num_expression EQUALS num_expression .
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    RPAREN          reduce using rule 75 (condition -> num_expression EQUALS num_expression .)
+    PLUS            shift and go to state 98
+    MINUS           shift and go to state 99
+    TIMES           shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULE          shift and go to state 102
+
+
+state 131
+
+    (76) condition -> num_expression NOT_EQUALS num_expression .
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    RPAREN          reduce using rule 76 (condition -> num_expression NOT_EQUALS num_expression .)
+    PLUS            shift and go to state 98
+    MINUS           shift and go to state 99
+    TIMES           shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULE          shift and go to state 102
+
+
+state 132
+
+    (42) num_expression -> num_expression PLUS num_expression .
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    GREATER_THAN    reduce using rule 42 (num_expression -> num_expression PLUS num_expression .)
+    LESS_THAN       reduce using rule 42 (num_expression -> num_expression PLUS num_expression .)
+    GREATER_EQ      reduce using rule 42 (num_expression -> num_expression PLUS num_expression .)
+    LESS_EQ         reduce using rule 42 (num_expression -> num_expression PLUS num_expression .)
+    EQUALS          reduce using rule 42 (num_expression -> num_expression PLUS num_expression .)
+    NOT_EQUALS      reduce using rule 42 (num_expression -> num_expression PLUS num_expression .)
+    PLUS            reduce using rule 42 (num_expression -> num_expression PLUS num_expression .)
+    MINUS           reduce using rule 42 (num_expression -> num_expression PLUS num_expression .)
+    SEMICOLON       reduce using rule 42 (num_expression -> num_expression PLUS num_expression .)
+    RPAREN          reduce using rule 42 (num_expression -> num_expression PLUS num_expression .)
+    TIMES           shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULE          shift and go to state 102
+
+  ! TIMES           [ reduce using rule 42 (num_expression -> num_expression PLUS num_expression .) ]
+  ! DIVIDE          [ reduce using rule 42 (num_expression -> num_expression PLUS num_expression .) ]
+  ! MODULE          [ reduce using rule 42 (num_expression -> num_expression PLUS num_expression .) ]
+  ! PLUS            [ shift and go to state 98 ]
+  ! MINUS           [ shift and go to state 99 ]
+
+
+state 133
+
+    (43) num_expression -> num_expression MINUS num_expression .
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    GREATER_THAN    reduce using rule 43 (num_expression -> num_expression MINUS num_expression .)
+    LESS_THAN       reduce using rule 43 (num_expression -> num_expression MINUS num_expression .)
+    GREATER_EQ      reduce using rule 43 (num_expression -> num_expression MINUS num_expression .)
+    LESS_EQ         reduce using rule 43 (num_expression -> num_expression MINUS num_expression .)
+    EQUALS          reduce using rule 43 (num_expression -> num_expression MINUS num_expression .)
+    NOT_EQUALS      reduce using rule 43 (num_expression -> num_expression MINUS num_expression .)
+    PLUS            reduce using rule 43 (num_expression -> num_expression MINUS num_expression .)
+    MINUS           reduce using rule 43 (num_expression -> num_expression MINUS num_expression .)
+    SEMICOLON       reduce using rule 43 (num_expression -> num_expression MINUS num_expression .)
+    RPAREN          reduce using rule 43 (num_expression -> num_expression MINUS num_expression .)
+    TIMES           shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULE          shift and go to state 102
+
+  ! TIMES           [ reduce using rule 43 (num_expression -> num_expression MINUS num_expression .) ]
+  ! DIVIDE          [ reduce using rule 43 (num_expression -> num_expression MINUS num_expression .) ]
+  ! MODULE          [ reduce using rule 43 (num_expression -> num_expression MINUS num_expression .) ]
+  ! PLUS            [ shift and go to state 98 ]
+  ! MINUS           [ shift and go to state 99 ]
+
+
+state 134
+
+    (44) num_expression -> num_expression TIMES num_expression .
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    GREATER_THAN    reduce using rule 44 (num_expression -> num_expression TIMES num_expression .)
+    LESS_THAN       reduce using rule 44 (num_expression -> num_expression TIMES num_expression .)
+    GREATER_EQ      reduce using rule 44 (num_expression -> num_expression TIMES num_expression .)
+    LESS_EQ         reduce using rule 44 (num_expression -> num_expression TIMES num_expression .)
+    EQUALS          reduce using rule 44 (num_expression -> num_expression TIMES num_expression .)
+    NOT_EQUALS      reduce using rule 44 (num_expression -> num_expression TIMES num_expression .)
+    PLUS            reduce using rule 44 (num_expression -> num_expression TIMES num_expression .)
+    MINUS           reduce using rule 44 (num_expression -> num_expression TIMES num_expression .)
+    TIMES           reduce using rule 44 (num_expression -> num_expression TIMES num_expression .)
+    DIVIDE          reduce using rule 44 (num_expression -> num_expression TIMES num_expression .)
+    MODULE          reduce using rule 44 (num_expression -> num_expression TIMES num_expression .)
+    SEMICOLON       reduce using rule 44 (num_expression -> num_expression TIMES num_expression .)
+    RPAREN          reduce using rule 44 (num_expression -> num_expression TIMES num_expression .)
+
+  ! PLUS            [ shift and go to state 98 ]
+  ! MINUS           [ shift and go to state 99 ]
+  ! TIMES           [ shift and go to state 100 ]
+  ! DIVIDE          [ shift and go to state 101 ]
+  ! MODULE          [ shift and go to state 102 ]
+
+
+state 135
+
+    (45) num_expression -> num_expression DIVIDE num_expression .
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    GREATER_THAN    reduce using rule 45 (num_expression -> num_expression DIVIDE num_expression .)
+    LESS_THAN       reduce using rule 45 (num_expression -> num_expression DIVIDE num_expression .)
+    GREATER_EQ      reduce using rule 45 (num_expression -> num_expression DIVIDE num_expression .)
+    LESS_EQ         reduce using rule 45 (num_expression -> num_expression DIVIDE num_expression .)
+    EQUALS          reduce using rule 45 (num_expression -> num_expression DIVIDE num_expression .)
+    NOT_EQUALS      reduce using rule 45 (num_expression -> num_expression DIVIDE num_expression .)
+    PLUS            reduce using rule 45 (num_expression -> num_expression DIVIDE num_expression .)
+    MINUS           reduce using rule 45 (num_expression -> num_expression DIVIDE num_expression .)
+    TIMES           reduce using rule 45 (num_expression -> num_expression DIVIDE num_expression .)
+    DIVIDE          reduce using rule 45 (num_expression -> num_expression DIVIDE num_expression .)
+    MODULE          reduce using rule 45 (num_expression -> num_expression DIVIDE num_expression .)
+    SEMICOLON       reduce using rule 45 (num_expression -> num_expression DIVIDE num_expression .)
+    RPAREN          reduce using rule 45 (num_expression -> num_expression DIVIDE num_expression .)
+
+  ! PLUS            [ shift and go to state 98 ]
+  ! MINUS           [ shift and go to state 99 ]
+  ! TIMES           [ shift and go to state 100 ]
+  ! DIVIDE          [ shift and go to state 101 ]
+  ! MODULE          [ shift and go to state 102 ]
+
+
+state 136
+
+    (46) num_expression -> num_expression MODULE num_expression .
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    GREATER_THAN    reduce using rule 46 (num_expression -> num_expression MODULE num_expression .)
+    LESS_THAN       reduce using rule 46 (num_expression -> num_expression MODULE num_expression .)
+    GREATER_EQ      reduce using rule 46 (num_expression -> num_expression MODULE num_expression .)
+    LESS_EQ         reduce using rule 46 (num_expression -> num_expression MODULE num_expression .)
+    EQUALS          reduce using rule 46 (num_expression -> num_expression MODULE num_expression .)
+    NOT_EQUALS      reduce using rule 46 (num_expression -> num_expression MODULE num_expression .)
+    PLUS            reduce using rule 46 (num_expression -> num_expression MODULE num_expression .)
+    MINUS           reduce using rule 46 (num_expression -> num_expression MODULE num_expression .)
+    TIMES           reduce using rule 46 (num_expression -> num_expression MODULE num_expression .)
+    DIVIDE          reduce using rule 46 (num_expression -> num_expression MODULE num_expression .)
+    MODULE          reduce using rule 46 (num_expression -> num_expression MODULE num_expression .)
+    SEMICOLON       reduce using rule 46 (num_expression -> num_expression MODULE num_expression .)
+    RPAREN          reduce using rule 46 (num_expression -> num_expression MODULE num_expression .)
+
+  ! PLUS            [ shift and go to state 98 ]
+  ! MINUS           [ shift and go to state 99 ]
+  ! TIMES           [ shift and go to state 100 ]
+  ! DIVIDE          [ shift and go to state 101 ]
+  ! MODULE          [ shift and go to state 102 ]
+
+
+state 137
+
+    (70) switch_structure -> SWITCH LPAREN condition RPAREN LBRACE . cases default RBRACE
+    (77) cases -> . cases case
+    (78) cases -> . case
+    (79) case -> . CASE NUMBER COLON basic_statement BREAK SEMICOLON
+
+    CASE            shift and go to state 158
+
+    cases                          shift and go to state 156
+    case                           shift and go to state 157
+
+state 138
+
+    (90) func_declaration_void -> VOID VARIABLE LPAREN params RPAREN LBRACE . basic_statement RBRACE
+    (8) basic_statement -> . var_declaration SEMICOLON
+    (9) var_declaration -> . var_declaration_num
+    (10) var_declaration -> . var_declaration_string
+    (11) var_declaration -> . var_declaration_bool
+    (12) var_declaration_num -> . type_num VARIABLE ASSIGN num_expression
+    (13) var_declaration_num -> . type_num VARIABLE ASSIGN data_structure
+    (14) var_declaration_num -> . type_num VARIABLE
+    (15) var_declaration_string -> . type_str VARIABLE ASSIGN str_expression
+    (16) var_declaration_string -> . type_str VARIABLE ASSIGN data_structure
+    (17) var_declaration_string -> . type_str VARIABLE
+    (18) var_declaration_bool -> . type_bool VARIABLE ASSIGN bool_expression
+    (19) var_declaration_bool -> . type_bool VARIABLE ASSIGN data_structure
+    (20) var_declaration_bool -> . type_bool VARIABLE
+    (21) type_num -> . DOUBLE
+    (22) type_num -> . INTEGER
+    (23) type_str -> . STRING
+    (24) type_bool -> . BOOL
+
+    DOUBLE          shift and go to state 28
+    INTEGER         shift and go to state 29
+    STRING          shift and go to state 30
+    BOOL            shift and go to state 31
+
+    basic_statement                shift and go to state 159
+    var_declaration                shift and go to state 152
+    var_declaration_num            shift and go to state 14
+    var_declaration_string         shift and go to state 15
+    var_declaration_bool           shift and go to state 16
+    type_num                       shift and go to state 153
+    type_str                       shift and go to state 154
+    type_bool                      shift and go to state 155
+
+state 139
+
+    (91) params -> params COMMA type . VARIABLE
+
+    VARIABLE        shift and go to state 160
+
+
+state 140
+
+    (59) list_structure -> LSQUARE elements RSQUARE .
+
+    SEMICOLON       reduce using rule 59 (list_structure -> LSQUARE elements RSQUARE .)
+
+
+state 141
+
+    (62) elements -> elements COMMA . value
+    (37) value -> . STRING_LITERAL
+    (38) value -> . NUMBER
+    (39) value -> . FLOAT
+    (40) value -> . TRUE
+    (41) value -> . FALSE
+
+    STRING_LITERAL  shift and go to state 109
+    NUMBER          shift and go to state 110
+    FLOAT           shift and go to state 111
+    TRUE            shift and go to state 112
+    FALSE           shift and go to state 113
+
+    value                          shift and go to state 161
+
+state 142
+
+    (60) map_structure -> LBRACE key_value_pairs RBRACE .
+
+    SEMICOLON       reduce using rule 60 (map_structure -> LBRACE key_value_pairs RBRACE .)
+
+
+state 143
+
+    (64) key_value_pairs -> key_value_pairs COMMA . key_value
+    (66) key_value -> . value COLON value
+    (37) value -> . STRING_LITERAL
+    (38) value -> . NUMBER
+    (39) value -> . FLOAT
+    (40) value -> . TRUE
+    (41) value -> . FALSE
+
+    STRING_LITERAL  shift and go to state 109
+    NUMBER          shift and go to state 110
+    FLOAT           shift and go to state 111
+    TRUE            shift and go to state 112
+    FALSE           shift and go to state 113
+
+    key_value                      shift and go to state 162
+    value                          shift and go to state 163
+
+state 144
+
+    (61) set_structure -> LBRACE elements RBRACE .
+
+    SEMICOLON       reduce using rule 61 (set_structure -> LBRACE elements RBRACE .)
+
+
+state 145
+
+    (66) key_value -> value COLON . value
+    (37) value -> . STRING_LITERAL
+    (38) value -> . NUMBER
+    (39) value -> . FLOAT
+    (40) value -> . TRUE
+    (41) value -> . FALSE
+
+    STRING_LITERAL  shift and go to state 109
+    NUMBER          shift and go to state 110
+    FLOAT           shift and go to state 111
+    TRUE            shift and go to state 112
+    FALSE           shift and go to state 113
+
+    value                          shift and go to state 164
+
+state 146
+
+    (87) func_declaration_num -> type_num VARIABLE LPAREN params RPAREN LBRACE . function_statment_num RBRACE
+    (93) function_statment_num -> . return_statment_num
+    (94) function_statment_num -> . basic_statement
+    (99) return_statment_num -> . RETURN num_expression SEMICOLON
+    (8) basic_statement -> . var_declaration SEMICOLON
+    (9) var_declaration -> . var_declaration_num
+    (10) var_declaration -> . var_declaration_string
+    (11) var_declaration -> . var_declaration_bool
+    (12) var_declaration_num -> . type_num VARIABLE ASSIGN num_expression
+    (13) var_declaration_num -> . type_num VARIABLE ASSIGN data_structure
+    (14) var_declaration_num -> . type_num VARIABLE
+    (15) var_declaration_string -> . type_str VARIABLE ASSIGN str_expression
+    (16) var_declaration_string -> . type_str VARIABLE ASSIGN data_structure
+    (17) var_declaration_string -> . type_str VARIABLE
+    (18) var_declaration_bool -> . type_bool VARIABLE ASSIGN bool_expression
+    (19) var_declaration_bool -> . type_bool VARIABLE ASSIGN data_structure
+    (20) var_declaration_bool -> . type_bool VARIABLE
+    (21) type_num -> . DOUBLE
+    (22) type_num -> . INTEGER
+    (23) type_str -> . STRING
+    (24) type_bool -> . BOOL
+
+    RETURN          shift and go to state 168
+    DOUBLE          shift and go to state 28
+    INTEGER         shift and go to state 29
+    STRING          shift and go to state 30
+    BOOL            shift and go to state 31
+
+    type_num                       shift and go to state 153
+    function_statment_num          shift and go to state 165
+    return_statment_num            shift and go to state 166
+    basic_statement                shift and go to state 167
+    var_declaration                shift and go to state 152
+    var_declaration_num            shift and go to state 14
+    var_declaration_string         shift and go to state 15
+    var_declaration_bool           shift and go to state 16
+    type_str                       shift and go to state 154
+    type_bool                      shift and go to state 155
+
+state 147
+
+    (88) func_declaration_str -> type_str VARIABLE LPAREN params RPAREN LBRACE . function_statment_str RBRACE
+    (95) function_statment_str -> . return_statment_string
+    (96) function_statment_str -> . basic_statement
+    (100) return_statment_string -> . RETURN str_expression SEMICOLON
+    (8) basic_statement -> . var_declaration SEMICOLON
+    (9) var_declaration -> . var_declaration_num
+    (10) var_declaration -> . var_declaration_string
+    (11) var_declaration -> . var_declaration_bool
+    (12) var_declaration_num -> . type_num VARIABLE ASSIGN num_expression
+    (13) var_declaration_num -> . type_num VARIABLE ASSIGN data_structure
+    (14) var_declaration_num -> . type_num VARIABLE
+    (15) var_declaration_string -> . type_str VARIABLE ASSIGN str_expression
+    (16) var_declaration_string -> . type_str VARIABLE ASSIGN data_structure
+    (17) var_declaration_string -> . type_str VARIABLE
+    (18) var_declaration_bool -> . type_bool VARIABLE ASSIGN bool_expression
+    (19) var_declaration_bool -> . type_bool VARIABLE ASSIGN data_structure
+    (20) var_declaration_bool -> . type_bool VARIABLE
+    (21) type_num -> . DOUBLE
+    (22) type_num -> . INTEGER
+    (23) type_str -> . STRING
+    (24) type_bool -> . BOOL
+
+    RETURN          shift and go to state 172
+    DOUBLE          shift and go to state 28
+    INTEGER         shift and go to state 29
+    STRING          shift and go to state 30
+    BOOL            shift and go to state 31
+
+    type_str                       shift and go to state 154
+    function_statment_str          shift and go to state 169
+    return_statment_string         shift and go to state 170
+    basic_statement                shift and go to state 171
+    var_declaration                shift and go to state 152
+    var_declaration_num            shift and go to state 14
+    var_declaration_string         shift and go to state 15
+    var_declaration_bool           shift and go to state 16
+    type_num                       shift and go to state 153
+    type_bool                      shift and go to state 155
+
+state 148
+
+    (51) bool_expression -> bool_expression AND bool_expression .
+    (51) bool_expression -> bool_expression . AND bool_expression
+    (52) bool_expression -> bool_expression . OR bool_expression
+
+    AND             reduce using rule 51 (bool_expression -> bool_expression AND bool_expression .)
+    OR              reduce using rule 51 (bool_expression -> bool_expression AND bool_expression .)
+    SEMICOLON       reduce using rule 51 (bool_expression -> bool_expression AND bool_expression .)
+
+  ! AND             [ shift and go to state 120 ]
+  ! OR              [ shift and go to state 121 ]
+
+
+state 149
+
+    (52) bool_expression -> bool_expression OR bool_expression .
+    (51) bool_expression -> bool_expression . AND bool_expression
+    (52) bool_expression -> bool_expression . OR bool_expression
+
+    OR              reduce using rule 52 (bool_expression -> bool_expression OR bool_expression .)
+    SEMICOLON       reduce using rule 52 (bool_expression -> bool_expression OR bool_expression .)
+    AND             shift and go to state 120
+
+  ! AND             [ reduce using rule 52 (bool_expression -> bool_expression OR bool_expression .) ]
+  ! OR              [ shift and go to state 121 ]
+
+
+state 150
+
+    (89) func_declaration_bool -> type_bool VARIABLE LPAREN params RPAREN LBRACE . function_statment_bool RBRACE
+    (97) function_statment_bool -> . return_statment_bool
+    (98) function_statment_bool -> . basic_statement
+    (101) return_statment_bool -> . RETURN bool_expression SEMICOLON
+    (8) basic_statement -> . var_declaration SEMICOLON
+    (9) var_declaration -> . var_declaration_num
+    (10) var_declaration -> . var_declaration_string
+    (11) var_declaration -> . var_declaration_bool
+    (12) var_declaration_num -> . type_num VARIABLE ASSIGN num_expression
+    (13) var_declaration_num -> . type_num VARIABLE ASSIGN data_structure
+    (14) var_declaration_num -> . type_num VARIABLE
+    (15) var_declaration_string -> . type_str VARIABLE ASSIGN str_expression
+    (16) var_declaration_string -> . type_str VARIABLE ASSIGN data_structure
+    (17) var_declaration_string -> . type_str VARIABLE
+    (18) var_declaration_bool -> . type_bool VARIABLE ASSIGN bool_expression
+    (19) var_declaration_bool -> . type_bool VARIABLE ASSIGN data_structure
+    (20) var_declaration_bool -> . type_bool VARIABLE
+    (21) type_num -> . DOUBLE
+    (22) type_num -> . INTEGER
+    (23) type_str -> . STRING
+    (24) type_bool -> . BOOL
+
+    RETURN          shift and go to state 176
+    DOUBLE          shift and go to state 28
+    INTEGER         shift and go to state 29
+    STRING          shift and go to state 30
+    BOOL            shift and go to state 31
+
+    type_bool                      shift and go to state 155
+    function_statment_bool         shift and go to state 173
+    return_statment_bool           shift and go to state 174
+    basic_statement                shift and go to state 175
+    var_declaration                shift and go to state 152
+    var_declaration_num            shift and go to state 14
+    var_declaration_string         shift and go to state 15
+    var_declaration_bool           shift and go to state 16
+    type_num                       shift and go to state 153
+    type_str                       shift and go to state 154
+
+state 151
+
+    (69) if_structure -> IF LPAREN condition RPAREN LBRACE basic_statement . RBRACE
+
+    RBRACE          shift and go to state 177
+
+
+state 152
+
+    (8) basic_statement -> var_declaration . SEMICOLON
+
+    SEMICOLON       shift and go to state 178
+
+
+state 153
+
+    (12) var_declaration_num -> type_num . VARIABLE ASSIGN num_expression
+    (13) var_declaration_num -> type_num . VARIABLE ASSIGN data_structure
+    (14) var_declaration_num -> type_num . VARIABLE
+
+    VARIABLE        shift and go to state 179
+
+
+state 154
+
+    (15) var_declaration_string -> type_str . VARIABLE ASSIGN str_expression
+    (16) var_declaration_string -> type_str . VARIABLE ASSIGN data_structure
+    (17) var_declaration_string -> type_str . VARIABLE
+
+    VARIABLE        shift and go to state 180
+
+
+state 155
+
+    (18) var_declaration_bool -> type_bool . VARIABLE ASSIGN bool_expression
+    (19) var_declaration_bool -> type_bool . VARIABLE ASSIGN data_structure
+    (20) var_declaration_bool -> type_bool . VARIABLE
+
+    VARIABLE        shift and go to state 181
+
+
+state 156
+
+    (70) switch_structure -> SWITCH LPAREN condition RPAREN LBRACE cases . default RBRACE
+    (77) cases -> cases . case
+    (80) default -> . DEFAULT COLON basic_statement SEMICOLON
+    (81) default -> . empty
+    (79) case -> . CASE NUMBER COLON basic_statement BREAK SEMICOLON
+    (82) empty -> .
+
+    DEFAULT         shift and go to state 184
+    CASE            shift and go to state 158
+    RBRACE          reduce using rule 82 (empty -> .)
+
+    default                        shift and go to state 182
+    case                           shift and go to state 183
+    empty                          shift and go to state 185
+
+state 157
+
+    (78) cases -> case .
+
+    DEFAULT         reduce using rule 78 (cases -> case .)
+    CASE            reduce using rule 78 (cases -> case .)
+    RBRACE          reduce using rule 78 (cases -> case .)
+
+
+state 158
+
+    (79) case -> CASE . NUMBER COLON basic_statement BREAK SEMICOLON
+
+    NUMBER          shift and go to state 186
+
+
+state 159
+
+    (90) func_declaration_void -> VOID VARIABLE LPAREN params RPAREN LBRACE basic_statement . RBRACE
+
+    RBRACE          shift and go to state 187
+
+
+state 160
+
+    (91) params -> params COMMA type VARIABLE .
+
+    RPAREN          reduce using rule 91 (params -> params COMMA type VARIABLE .)
+    COMMA           reduce using rule 91 (params -> params COMMA type VARIABLE .)
+
+
+state 161
+
+    (62) elements -> elements COMMA value .
+
+    RSQUARE         reduce using rule 62 (elements -> elements COMMA value .)
+    COMMA           reduce using rule 62 (elements -> elements COMMA value .)
+    RBRACE          reduce using rule 62 (elements -> elements COMMA value .)
+
+
+state 162
+
+    (64) key_value_pairs -> key_value_pairs COMMA key_value .
+
+    RBRACE          reduce using rule 64 (key_value_pairs -> key_value_pairs COMMA key_value .)
+    COMMA           reduce using rule 64 (key_value_pairs -> key_value_pairs COMMA key_value .)
+
+
+state 163
+
+    (66) key_value -> value . COLON value
+
+    COLON           shift and go to state 145
+
+
+state 164
+
+    (66) key_value -> value COLON value .
+
+    RBRACE          reduce using rule 66 (key_value -> value COLON value .)
+    COMMA           reduce using rule 66 (key_value -> value COLON value .)
+
+
+state 165
+
+    (87) func_declaration_num -> type_num VARIABLE LPAREN params RPAREN LBRACE function_statment_num . RBRACE
+
+    RBRACE          shift and go to state 188
+
+
+state 166
+
+    (93) function_statment_num -> return_statment_num .
+
+    RBRACE          reduce using rule 93 (function_statment_num -> return_statment_num .)
+
+
+state 167
+
+    (94) function_statment_num -> basic_statement .
+
+    RBRACE          reduce using rule 94 (function_statment_num -> basic_statement .)
+
+
+state 168
+
+    (99) return_statment_num -> RETURN . num_expression SEMICOLON
+    (42) num_expression -> . num_expression PLUS num_expression
+    (43) num_expression -> . num_expression MINUS num_expression
+    (44) num_expression -> . num_expression TIMES num_expression
+    (45) num_expression -> . num_expression DIVIDE num_expression
+    (46) num_expression -> . num_expression MODULE num_expression
+    (47) num_expression -> . LPAREN num_expression RPAREN
+    (49) num_expression -> . NUMBER
+    (50) num_expression -> . FLOAT
+
+    LPAREN          shift and go to state 52
+    NUMBER          shift and go to state 55
+    FLOAT           shift and go to state 56
+
+    num_expression                 shift and go to state 189
+
+state 169
+
+    (88) func_declaration_str -> type_str VARIABLE LPAREN params RPAREN LBRACE function_statment_str . RBRACE
+
+    RBRACE          shift and go to state 190
+
+
+state 170
+
+    (95) function_statment_str -> return_statment_string .
+
+    RBRACE          reduce using rule 95 (function_statment_str -> return_statment_string .)
+
+
+state 171
+
+    (96) function_statment_str -> basic_statement .
+
+    RBRACE          reduce using rule 96 (function_statment_str -> basic_statement .)
+
+
+state 172
+
+    (100) return_statment_string -> RETURN . str_expression SEMICOLON
+    (48) str_expression -> . STRING_LITERAL
+
+    STRING_LITERAL  shift and go to state 82
+
+    str_expression                 shift and go to state 191
+
+state 173
+
+    (89) func_declaration_bool -> type_bool VARIABLE LPAREN params RPAREN LBRACE function_statment_bool . RBRACE
+
+    RBRACE          shift and go to state 192
+
+
+state 174
+
+    (97) function_statment_bool -> return_statment_bool .
+
+    RBRACE          reduce using rule 97 (function_statment_bool -> return_statment_bool .)
+
+
+state 175
+
+    (98) function_statment_bool -> basic_statement .
+
+    RBRACE          reduce using rule 98 (function_statment_bool -> basic_statement .)
+
+
+state 176
+
+    (101) return_statment_bool -> RETURN . bool_expression SEMICOLON
+    (51) bool_expression -> . bool_expression AND bool_expression
+    (52) bool_expression -> . bool_expression OR bool_expression
+    (53) bool_expression -> . NEGATION bool_expression
+    (54) bool_expression -> . TRUE
+    (55) bool_expression -> . FALSE
+
+    NEGATION        shift and go to state 86
+    TRUE            shift and go to state 87
+    FALSE           shift and go to state 88
+
+    bool_expression                shift and go to state 193
+
+state 177
+
+    (69) if_structure -> IF LPAREN condition RPAREN LBRACE basic_statement RBRACE .
+
+    VOID            reduce using rule 69 (if_structure -> IF LPAREN condition RPAREN LBRACE basic_statement RBRACE .)
+    IF              reduce using rule 69 (if_structure -> IF LPAREN condition RPAREN LBRACE basic_statement RBRACE .)
+    SWITCH          reduce using rule 69 (if_structure -> IF LPAREN condition RPAREN LBRACE basic_statement RBRACE .)
+    DOUBLE          reduce using rule 69 (if_structure -> IF LPAREN condition RPAREN LBRACE basic_statement RBRACE .)
+    INTEGER         reduce using rule 69 (if_structure -> IF LPAREN condition RPAREN LBRACE basic_statement RBRACE .)
+    STRING          reduce using rule 69 (if_structure -> IF LPAREN condition RPAREN LBRACE basic_statement RBRACE .)
+    BOOL            reduce using rule 69 (if_structure -> IF LPAREN condition RPAREN LBRACE basic_statement RBRACE .)
+    $end            reduce using rule 69 (if_structure -> IF LPAREN condition RPAREN LBRACE basic_statement RBRACE .)
+
+
+state 178
+
+    (8) basic_statement -> var_declaration SEMICOLON .
+
+    RBRACE          reduce using rule 8 (basic_statement -> var_declaration SEMICOLON .)
+    SEMICOLON       reduce using rule 8 (basic_statement -> var_declaration SEMICOLON .)
+    BREAK           reduce using rule 8 (basic_statement -> var_declaration SEMICOLON .)
+
+
+state 179
+
+    (12) var_declaration_num -> type_num VARIABLE . ASSIGN num_expression
+    (13) var_declaration_num -> type_num VARIABLE . ASSIGN data_structure
+    (14) var_declaration_num -> type_num VARIABLE .
+
+    ASSIGN          shift and go to state 46
+    SEMICOLON       reduce using rule 14 (var_declaration_num -> type_num VARIABLE .)
+
+
+state 180
+
+    (15) var_declaration_string -> type_str VARIABLE . ASSIGN str_expression
+    (16) var_declaration_string -> type_str VARIABLE . ASSIGN data_structure
+    (17) var_declaration_string -> type_str VARIABLE .
+
+    ASSIGN          shift and go to state 48
+    SEMICOLON       reduce using rule 17 (var_declaration_string -> type_str VARIABLE .)
+
+
+state 181
+
+    (18) var_declaration_bool -> type_bool VARIABLE . ASSIGN bool_expression
+    (19) var_declaration_bool -> type_bool VARIABLE . ASSIGN data_structure
+    (20) var_declaration_bool -> type_bool VARIABLE .
+
+    ASSIGN          shift and go to state 50
+    SEMICOLON       reduce using rule 20 (var_declaration_bool -> type_bool VARIABLE .)
+
+
+state 182
+
+    (70) switch_structure -> SWITCH LPAREN condition RPAREN LBRACE cases default . RBRACE
+
+    RBRACE          shift and go to state 194
+
+
+state 183
+
+    (77) cases -> cases case .
+
+    DEFAULT         reduce using rule 77 (cases -> cases case .)
+    CASE            reduce using rule 77 (cases -> cases case .)
+    RBRACE          reduce using rule 77 (cases -> cases case .)
+
+
+state 184
+
+    (80) default -> DEFAULT . COLON basic_statement SEMICOLON
+
+    COLON           shift and go to state 195
+
+
+state 185
+
+    (81) default -> empty .
+
+    RBRACE          reduce using rule 81 (default -> empty .)
+
+
+state 186
+
+    (79) case -> CASE NUMBER . COLON basic_statement BREAK SEMICOLON
+
+    COLON           shift and go to state 196
+
+
+state 187
+
+    (90) func_declaration_void -> VOID VARIABLE LPAREN params RPAREN LBRACE basic_statement RBRACE .
+
+    SEMICOLON       reduce using rule 90 (func_declaration_void -> VOID VARIABLE LPAREN params RPAREN LBRACE basic_statement RBRACE .)
+
+
+state 188
+
+    (87) func_declaration_num -> type_num VARIABLE LPAREN params RPAREN LBRACE function_statment_num RBRACE .
+
+    SEMICOLON       reduce using rule 87 (func_declaration_num -> type_num VARIABLE LPAREN params RPAREN LBRACE function_statment_num RBRACE .)
+
+
+state 189
+
+    (99) return_statment_num -> RETURN num_expression . SEMICOLON
+    (42) num_expression -> num_expression . PLUS num_expression
+    (43) num_expression -> num_expression . MINUS num_expression
+    (44) num_expression -> num_expression . TIMES num_expression
+    (45) num_expression -> num_expression . DIVIDE num_expression
+    (46) num_expression -> num_expression . MODULE num_expression
+
+    SEMICOLON       shift and go to state 197
+    PLUS            shift and go to state 98
+    MINUS           shift and go to state 99
+    TIMES           shift and go to state 100
+    DIVIDE          shift and go to state 101
+    MODULE          shift and go to state 102
+
+
+state 190
+
+    (88) func_declaration_str -> type_str VARIABLE LPAREN params RPAREN LBRACE function_statment_str RBRACE .
+
+    SEMICOLON       reduce using rule 88 (func_declaration_str -> type_str VARIABLE LPAREN params RPAREN LBRACE function_statment_str RBRACE .)
+
+
+state 191
+
+    (100) return_statment_string -> RETURN str_expression . SEMICOLON
+
+    SEMICOLON       shift and go to state 198
+
+
+state 192
+
+    (89) func_declaration_bool -> type_bool VARIABLE LPAREN params RPAREN LBRACE function_statment_bool RBRACE .
+
+    SEMICOLON       reduce using rule 89 (func_declaration_bool -> type_bool VARIABLE LPAREN params RPAREN LBRACE function_statment_bool RBRACE .)
+
+
+state 193
+
+    (101) return_statment_bool -> RETURN bool_expression . SEMICOLON
+    (51) bool_expression -> bool_expression . AND bool_expression
+    (52) bool_expression -> bool_expression . OR bool_expression
+
+    SEMICOLON       shift and go to state 199
+    AND             shift and go to state 120
+    OR              shift and go to state 121
+
+
+state 194
+
+    (70) switch_structure -> SWITCH LPAREN condition RPAREN LBRACE cases default RBRACE .
+
+    VOID            reduce using rule 70 (switch_structure -> SWITCH LPAREN condition RPAREN LBRACE cases default RBRACE .)
+    IF              reduce using rule 70 (switch_structure -> SWITCH LPAREN condition RPAREN LBRACE cases default RBRACE .)
+    SWITCH          reduce using rule 70 (switch_structure -> SWITCH LPAREN condition RPAREN LBRACE cases default RBRACE .)
+    DOUBLE          reduce using rule 70 (switch_structure -> SWITCH LPAREN condition RPAREN LBRACE cases default RBRACE .)
+    INTEGER         reduce using rule 70 (switch_structure -> SWITCH LPAREN condition RPAREN LBRACE cases default RBRACE .)
+    STRING          reduce using rule 70 (switch_structure -> SWITCH LPAREN condition RPAREN LBRACE cases default RBRACE .)
+    BOOL            reduce using rule 70 (switch_structure -> SWITCH LPAREN condition RPAREN LBRACE cases default RBRACE .)
+    $end            reduce using rule 70 (switch_structure -> SWITCH LPAREN condition RPAREN LBRACE cases default RBRACE .)
+
+
+state 195
+
+    (80) default -> DEFAULT COLON . basic_statement SEMICOLON
+    (8) basic_statement -> . var_declaration SEMICOLON
+    (9) var_declaration -> . var_declaration_num
+    (10) var_declaration -> . var_declaration_string
+    (11) var_declaration -> . var_declaration_bool
+    (12) var_declaration_num -> . type_num VARIABLE ASSIGN num_expression
+    (13) var_declaration_num -> . type_num VARIABLE ASSIGN data_structure
+    (14) var_declaration_num -> . type_num VARIABLE
+    (15) var_declaration_string -> . type_str VARIABLE ASSIGN str_expression
+    (16) var_declaration_string -> . type_str VARIABLE ASSIGN data_structure
+    (17) var_declaration_string -> . type_str VARIABLE
+    (18) var_declaration_bool -> . type_bool VARIABLE ASSIGN bool_expression
+    (19) var_declaration_bool -> . type_bool VARIABLE ASSIGN data_structure
+    (20) var_declaration_bool -> . type_bool VARIABLE
+    (21) type_num -> . DOUBLE
+    (22) type_num -> . INTEGER
+    (23) type_str -> . STRING
+    (24) type_bool -> . BOOL
+
+    DOUBLE          shift and go to state 28
+    INTEGER         shift and go to state 29
+    STRING          shift and go to state 30
+    BOOL            shift and go to state 31
+
+    basic_statement                shift and go to state 200
+    var_declaration                shift and go to state 152
+    var_declaration_num            shift and go to state 14
+    var_declaration_string         shift and go to state 15
+    var_declaration_bool           shift and go to state 16
+    type_num                       shift and go to state 153
+    type_str                       shift and go to state 154
+    type_bool                      shift and go to state 155
+
+state 196
+
+    (79) case -> CASE NUMBER COLON . basic_statement BREAK SEMICOLON
+    (8) basic_statement -> . var_declaration SEMICOLON
+    (9) var_declaration -> . var_declaration_num
+    (10) var_declaration -> . var_declaration_string
+    (11) var_declaration -> . var_declaration_bool
+    (12) var_declaration_num -> . type_num VARIABLE ASSIGN num_expression
+    (13) var_declaration_num -> . type_num VARIABLE ASSIGN data_structure
+    (14) var_declaration_num -> . type_num VARIABLE
+    (15) var_declaration_string -> . type_str VARIABLE ASSIGN str_expression
+    (16) var_declaration_string -> . type_str VARIABLE ASSIGN data_structure
+    (17) var_declaration_string -> . type_str VARIABLE
+    (18) var_declaration_bool -> . type_bool VARIABLE ASSIGN bool_expression
+    (19) var_declaration_bool -> . type_bool VARIABLE ASSIGN data_structure
+    (20) var_declaration_bool -> . type_bool VARIABLE
+    (21) type_num -> . DOUBLE
+    (22) type_num -> . INTEGER
+    (23) type_str -> . STRING
+    (24) type_bool -> . BOOL
+
+    DOUBLE          shift and go to state 28
+    INTEGER         shift and go to state 29
+    STRING          shift and go to state 30
+    BOOL            shift and go to state 31
+
+    basic_statement                shift and go to state 201
+    var_declaration                shift and go to state 152
+    var_declaration_num            shift and go to state 14
+    var_declaration_string         shift and go to state 15
+    var_declaration_bool           shift and go to state 16
+    type_num                       shift and go to state 153
+    type_str                       shift and go to state 154
+    type_bool                      shift and go to state 155
+
+state 197
+
+    (99) return_statment_num -> RETURN num_expression SEMICOLON .
+
+    RBRACE          reduce using rule 99 (return_statment_num -> RETURN num_expression SEMICOLON .)
+
+
+state 198
+
+    (100) return_statment_string -> RETURN str_expression SEMICOLON .
+
+    RBRACE          reduce using rule 100 (return_statment_string -> RETURN str_expression SEMICOLON .)
+
+
+state 199
+
+    (101) return_statment_bool -> RETURN bool_expression SEMICOLON .
+
+    RBRACE          reduce using rule 101 (return_statment_bool -> RETURN bool_expression SEMICOLON .)
+
+
+state 200
+
+    (80) default -> DEFAULT COLON basic_statement . SEMICOLON
+
+    SEMICOLON       shift and go to state 202
+
+
+state 201
+
+    (79) case -> CASE NUMBER COLON basic_statement . BREAK SEMICOLON
+
+    BREAK           shift and go to state 203
+
+
+state 202
+
+    (80) default -> DEFAULT COLON basic_statement SEMICOLON .
+
+    RBRACE          reduce using rule 80 (default -> DEFAULT COLON basic_statement SEMICOLON .)
+
+
+state 203
+
+    (79) case -> CASE NUMBER COLON basic_statement BREAK . SEMICOLON
+
+    SEMICOLON       shift and go to state 204
+
+
+state 204
+
+    (79) case -> CASE NUMBER COLON basic_statement BREAK SEMICOLON .
+
+    DEFAULT         reduce using rule 79 (case -> CASE NUMBER COLON basic_statement BREAK SEMICOLON .)
+    CASE            reduce using rule 79 (case -> CASE NUMBER COLON basic_statement BREAK SEMICOLON .)
+    RBRACE          reduce using rule 79 (case -> CASE NUMBER COLON basic_statement BREAK SEMICOLON .)
+
