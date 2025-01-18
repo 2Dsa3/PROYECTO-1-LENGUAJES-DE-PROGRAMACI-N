@@ -1,4 +1,0 @@
-Lex-analyzer started at: 2024-11-28 13:23:57.483067
-
-
-Lex-analyzer finished at: 2024-11-28 13:23:57.483067

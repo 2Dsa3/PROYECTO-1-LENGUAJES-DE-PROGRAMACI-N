@@ -1,9 +1,0 @@
-Syntax-analyzer started at: 2024-11-28 13:56:58.550726
-
-ERROR: Syntax error at line 8: Unexpected token 'var'
-Parsing result:
-None
-
-Syntax-analyzer finished at: 2024-11-28 13:56:58.552852
-
-ERROR: Syntax error at line 29: Unexpected token '}'
