@@ -43,9 +43,8 @@ class AirfleetsScrapper
             Flight.new(date, airline, departure, arrival, star2Count, reportview).save(output_file) 
             
         end
+
         driver.quit
-
-
 
     end
 
@@ -56,22 +55,22 @@ end
 
 class AirfleetsScrapperPageIterator < AirfleetsScrapper 
 
-    def extraction(url, output_file) 
-        i = 0
-        while i < 16
+    def extraction(url, output_file, pagIni, pagFin) 
+        i = pagIni
+        while i < pagFin +1
             puts "Extraction #{i}"
             super(url, output_file)
             puts "Changing url"
             url = changeUrl(url)
             i += 1
-            sleep(2.4) # Adding a sleep to avoid scraper detection
+            sleep(3) # Adding a sleep to avoid scraper detection
         end
 
     
     end
 
     def changeUrl(url)
-        sleep(2.4) # Adding a sleep to avoid scraper detection
+        sleep(3) # Adding a sleep to avoid scraper detection
         url = url.split('=')
         url[2] = (url[2].split('&')[0].to_i + 50).to_s
         url[2] = url[2] + '&tot'
@@ -103,13 +102,21 @@ class Flight
     end
 end
 
-ini = AirfleetsScrapper.new
-ini.headers('RatedFlights.csv')
 
-scrapper = AirfleetsScrapperPageIterator.new
-url = 'https://www.airfleets.net/flightlog/index.php?file=reportview&start=0&tot=3231'
+#First Scrapping
+# ini = AirfleetsScrapper.new
+# ini.headers('rated_flights.csv')
 
-scrapper.extraction(url, 'RatedFlights.csv')
+# scrapper = AirfleetsScrapperPageIterator.new
+# url = 'https://www.airfleets.net/flightlog/index.php?file=reportview&start=0&tot=3231'
+
+# scrapper.extraction(url, 'RatedFlights.csv')
+
+#Final Scrapping
+
+# scrapper = AirfleetsScrapperPageIterator.new
+# url = 'https://www.airfleets.net/flightlog/index.php?file=reportview&start=450&tot=3231' #Si el scrapping se detiene, cambiar el valor de start por el valor de la pagina en la que se quedo
+# scrapper.extraction(url, 'rated_flights.csv',10,62)
 
 
 
