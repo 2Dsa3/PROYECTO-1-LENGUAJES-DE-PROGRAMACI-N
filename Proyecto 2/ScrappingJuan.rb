@@ -5,7 +5,6 @@ require 'csv'
 
 
 
-
 class Crash
   attr_accessor :date, :location, :aboard, :fatalities, :summary
 
@@ -43,66 +42,71 @@ class Crash
 
 end
 
+class DetailedCrash < Crash
+  attr_accessor :operator, :Flight
+
+  def initialize(date, location, aboard, fatalities, summary, operator)
+    super(date, location, aboard, fatalities, summary)
+    @operator = operator
+    if operator == "?"
+      @operator = "unknown"
+    end
+  end
+  def save(file)
+    CSV.open(file, 'a') do |csv|
+      csv << [@date, @location, @operator, @aboard, @fatalities, @summary]
+    end
+  end
+end
 
 class PlaneCrashScraper
 
-
-
-  def scrape_accident_data(url, output_file)
+  def scrape_accident_data(url, yearStart, output_file, user)
     puts "Scrapeando datos desde #{url}..."
 
-    options = { "User-Agent" => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" }
+    options = { "User-Agent" => user }
 
-    html_content = URI.open(url + "database.htm", options).read
-    parsed_content = Nokogiri::HTML(html_content)
-
-    parsed_content.css("a").each do |link|
-
-      year = link.text.strip
-
+    year = yearStart.to_s
+    while yearStart < Time.now.year
+      year = year.to_s
       puts "Scrapeando datos del año #{year}..."
 
-      year_html = URI.open(url+ year + "/" + year + ".htm").read
+      year_html = URI.open(url + year + "/" + year + ".htm", options).read
       parsed_year = Nokogiri::HTML(year_html)
-
-      sleep(rand(1..5))
 
       crash_counter = 1
       parsed_year.css("tr").drop(1).each do |row|
-
-        crash_html = URI.open(url+ year + "/" + year + "-" + crash_counter.to_s + ".htm").read
+        crash_html = URI.open(url + year + "/" + year + "-" + crash_counter.to_s + ".htm", options).read
         parsed_crash = Nokogiri::HTML(crash_html)
 
-        crash = Crash.new("","","","","")
-        
+        crash = DetailedCrash.new("", "", "", "", "", "")
+
         parsed_crash.css("tr").drop(1).each do |field|
-
-          if(field.css("b").text.strip == "Date:")
-            crash.date = field.css("font").inner_text
+          if field.css("b").text.strip == "Date:"
+            crash.date = field.css("font").inner_text.encode('UTF-8', invalid: :replace, undef: :replace, replace: '').gsub("\n", " ").strip
           end
-          if(field.css("b").text.strip == "Location:")
-            crash.location = field.css("font").inner_text
+          if field.css("b").text.strip == "Location:"
+            crash.location = field.css("font").inner_text.encode('UTF-8', invalid: :replace, undef: :replace, replace: '').gsub("\n", " ").strip
           end
-          if(field.css("b").text.strip == "Aboard:")
-            crash.aboard = field.css("font").inner_text
+          if field.css("b").text.strip == "Aboard:"
+            crash.aboard = field.css("font").inner_text.encode('UTF-8', invalid: :replace, undef: :replace, replace: '').gsub("\n", " ").strip
           end
-          if(field.css("b").text.strip == "Fatalities:")
-            crash.fatalities = field.css("font").inner_text
+          if field.css("b").text.strip == "Fatalities:"
+            crash.fatalities = field.css("font").inner_text.encode('UTF-8', invalid: :replace, undef: :replace, replace: '').gsub("\n", " ").strip
           end
-          if(field.css("b").text.strip == "Summary:")
-            crash.summary = field.css("font").inner_text
+          if field.css("b").text.strip == "Summary:"
+            crash.summary = field.css("font").inner_text.encode('UTF-8', invalid: :replace, undef: :replace, replace: '').gsub("\n", " ").strip
           end
-
+          if field.css("b").text.strip == "Operator:"
+            crash.operator = field.css("font").inner_text.encode('UTF-8', invalid: :replace, undef: :replace, replace: '').gsub("\n", " ").strip
+          end
         end
 
-        sleep(rand(1..5))
-
         crash.save(output_file)
-        puts "#{year}: año #{crash_counter}"
+        puts "#{crash_counter}: año #{year}"
         crash_counter += 1
       end
-
-
+      year = year.to_i + 1
     end
 
     puts "Datos guardados exitosamente en '#{output_file}'."
@@ -110,6 +114,11 @@ class PlaneCrashScraper
   end
 end
 
+
+
 # Ejemplo de uso
+
+userDavid= "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36 Edg/132.0.0.0"
+userJuan= "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 scraper = PlaneCrashScraper.new
-scraper.scrape_accident_data('https://www.planecrashinfo.com/', 'plane_crashes.csv')
+scraper.scrape_accident_data('https://www.planecrashinfo.com/',2000, 'plane_crashes_with_operator.csv',userDavid)
